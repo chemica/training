@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lesson 0002 — Trace a serverless request</title>
+  <link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">Lesson 0002 · Learn, then test</div>
+    <h1>Trace one request.</h1>
+    <p class="lede">Learn the AWS terms for a request path. Then use those terms to explain identity, failure, and diagnostic evidence.</p>
+    <p class="meta">About 30–40 minutes · No AWS account required · Supports DVA-C02 security and troubleshooting</p>
+  </header>
+
+  <section>
+    <h2>1 · Orient</h2>
+    <p><strong>Prerequisite:</strong> You know what an HTTP request, API, function, and log are in general software development. This lesson teaches the AWS-specific names and boundaries.</p>
+    <p><strong>Outcome:</strong> You can trace a serverless request and explain which identity makes each call, one plausible failure, and the evidence you would inspect.</p>
+    <aside class="callout"><strong>Sequence:</strong> Sections 2–4 teach the material. Section 5 is the first knowledge check. Section 6 is the application task.</aside>
+  </section>
+
+  <section>
+    <h2>2 · Learn the system terms</h2>
+    <p>An <strong>AWS service</strong> is a capability that AWS provides. Examples include AWS Lambda and Amazon S3. A <strong>resource</strong> is one configured instance of a service. One Lambda function and one S3 bucket are resources.</p>
+    <p>A <strong>client</strong> is software that sends a <strong>request</strong>. A request asks another component to do something. A <strong>response</strong> reports the result.</p>
+
+    <div class="card"><p><strong>Client</strong> → <strong>Amazon API Gateway</strong> → <strong>AWS Lambda</strong> → <strong>Amazon Bedrock</strong></p></div>
+
+    <h3>Amazon API Gateway</h3>
+    <p>API Gateway provides an HTTP API boundary. It receives the public request. It can validate parts of the request, apply access controls, limit request rates, and route an accepted request to a backend.</p>
+
+    <h3>AWS Lambda</h3>
+    <p>Lambda runs application code in response to an <strong>invocation</strong>, which is a request to run the function, or an <strong>event</strong>, which is a record that something occurred. You provide the code and configuration. AWS manages the underlying compute infrastructure. A configured Lambda function is a resource.</p>
+
+    <h3>Amazon Bedrock</h3>
+    <p>A <strong>foundation model</strong> is a large model trained on broad data that can be adapted to many tasks. <strong>Inference</strong> is the use of a trained model to produce an output from an input. Bedrock gives an application controlled access to foundation models and related generative-AI capabilities. In this path, Lambda sends an inference request to Bedrock and receives a model response.</p>
+
+    <h3>Amazon S3 and Amazon SQS</h3>
+    <p>S3 is object storage. An <strong>object</strong> contains data and metadata inside an S3 bucket. SQS is a message queue. A producer sends a message; a consumer receives and processes it.</p>
+    <p>A <strong>synchronous</strong> call makes the caller wait for completion. An <strong>asynchronous</strong> flow lets the caller submit work without waiting for all processing to finish. SQS is useful when slow work should continue separately from the original HTTP request.</p>
+  </section>
+
+  <section>
+    <h2>3 · Learn identity and permission terms</h2>
+    <p>A <strong>principal</strong> is an identity that can make an AWS request. A principal can represent a person, application, or AWS service.</p>
+    <p><strong>Authentication</strong> verifies which principal made the request. <strong>Authorization</strong> decides whether that principal can perform a specified action on a specified resource.</p>
+
+    <div class="card">
+      <p><strong>Authentication:</strong> “Which principal is this?”</p>
+      <p><strong>Authorization:</strong> “Can this principal perform this action on this resource?”</p>
+    </div>
+
+    <p>An <strong>IAM role</strong> is an AWS identity with a set of permissions. An approved principal assumes the role and receives <strong>temporary credentials</strong>. Lambda uses an <strong>execution role</strong> when its code calls another AWS service.</p>
+    <p>An <strong>IAM policy</strong> is a JSON document that defines allowed or denied actions, resources, and optional conditions. <strong>Least privilege</strong> means granting only the permissions required for the task.</p>
+
+    <h3>Identity on the main path</h3>
+    <ul>
+      <li>The client presents a user or application identity to API Gateway.</li>
+      <li>API Gateway is permitted to invoke the selected Lambda function.</li>
+      <li>The Lambda function uses temporary credentials from its execution role.</li>
+      <li>The execution role permits only the required Bedrock actions and models.</li>
+    </ul>
+
+    <p>The browser must not receive the Lambda execution role. Browser code is controlled by the user. A user can inspect it, change it, and send requests that bypass the interface. The server-side function is the controlled boundary for validation, authorization, model choice, usage limits, and logging.</p>
+  </section>
+
+  <section>
+    <h2>4 · Learn failure and evidence terms</h2>
+    <p>A <strong>failure mode</strong> is one specific way that a component or interaction can fail. “It breaks” is not useful. “The Lambda execution role does not permit <code>bedrock:InvokeModel</code>” is useful.</p>
+    <p><strong>Evidence</strong> is recorded information that helps you confirm or reject an explanation for a failure.</p>
+
+    <dl class="card">
+      <dt><strong>Log</strong></dt><dd>A timestamped event record with diagnostic details.</dd>
+      <dt><strong>Metric</strong></dt><dd>A numeric measurement recorded over time, such as error count or latency.</dd>
+      <dt><strong>Trace</strong></dt><dd>A connected record of one request across multiple components.</dd>
+      <dt><strong>CloudTrail event</strong></dt><dd>An audit record of an AWS API action. It helps answer who did what, when, and against which resource.</dd>
+      <dt><strong>Request ID</strong></dt><dd>An identifier used to connect evidence about one request.</dd>
+    </dl>
+
+    <p><strong>Observability</strong> is the ability to understand a system's state and behavior from its outputs. Logs, metrics, and traces are observability signals. CloudWatch stores and presents many operational signals. CloudTrail focuses on AWS API audit activity.</p>
+    <p>Two common operational failures are a <strong>timeout</strong>, when work exceeds an allowed duration, and a <strong>throttle</strong>, when a service temporarily rejects work because a rate or capacity limit was exceeded.</p>
+  </section>
+
+  <section>
+    <h2>Worked example</h2>
+    <p>The client sends <code>POST /summaries</code>. API Gateway accepts the HTTP request and invokes Lambda. Lambda validates the input and calls a Bedrock model.</p>
+
+    <div class="card">
+      <h3>Arrow: Lambda → Bedrock</h3>
+      <p><strong>Identity:</strong> The Lambda execution role is the AWS principal. Lambda obtains temporary credentials for this role.</p>
+      <p><strong>Authorization:</strong> An IAM policy must allow the required Bedrock inference action for the permitted model resource.</p>
+      <p><strong>Failure mode:</strong> The policy does not permit the action. Bedrock returns an access-denied error.</p>
+      <p><strong>Evidence:</strong> The Lambda log contains the error and request ID. A CloudTrail event records the attempted AWS API action. CloudWatch metrics show the Lambda invocation as an application error if the code reports it correctly.</p>
+    </div>
+
+    <h3>Worked asynchronous example</h3>
+    <p>A user uploads a document for later processing:</p>
+    <ol>
+      <li>The client uploads an object to a controlled S3 location.</li>
+      <li>An event causes an ingestion message to enter SQS.</li>
+      <li>A Lambda consumer receives the message.</li>
+      <li>The consumer processes the document and records the result.</li>
+      <li>The client checks status through a separate request.</li>
+    </ol>
+    <p>The original client does not wait for all processing. The queue also absorbs bursts. Later lessons will teach retries, idempotency, visibility timeouts, and dead-letter queues before they are assessed.</p>
+  </section>
+
+  <section>
+    <h2>Primary sources</h2>
+    <p>Use these AWS introductions to confirm the service boundaries: <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html">Amazon API Gateway</a>, <a href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">AWS Lambda</a>, <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html">Amazon SQS</a>, and <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html">AWS IAM</a>.</p>
+    <p>For quick revision, use the <a href="../reference/glossary.html">course glossary</a>.</p>
+  </section>
+
+  <section>
+    <h2>5 · Retrieve what you learned</h2>
+    <p>Now close or cover Sections 2–4. This check uses only terms explained above.</p>
+    <form id="request-path-check" class="card">
+      <div class="question"><label for="authenticate"><strong>Which service is the HTTP boundary in this path?</strong></label><select id="authenticate" name="authenticate" required><option value="">Choose a service</option><option value="s3">Amazon S3</option><option value="sqs">Amazon SQS</option><option value="lambda">AWS Lambda</option><option value="gateway">API Gateway</option></select></div>
+      <div class="question"><label for="execute"><strong>Which service runs the application function?</strong></label><select id="execute" name="execute" required><option value="">Choose a service</option><option value="s3">Amazon S3</option><option value="sqs">Amazon SQS</option><option value="lambda">AWS Lambda</option><option value="gateway">API Gateway</option></select></div>
+      <div class="question"><label for="buffer"><strong>Which service buffers asynchronous work?</strong></label><select id="buffer" name="buffer" required><option value="">Choose a service</option><option value="s3">Amazon S3</option><option value="sqs">Amazon SQS</option><option value="lambda">AWS Lambda</option><option value="gateway">API Gateway</option></select></div>
+      <div class="question"><label for="persist"><strong>Which service stores uploaded objects?</strong></label><select id="persist" name="persist" required><option value="">Choose a service</option><option value="s3">Amazon S3</option><option value="sqs">Amazon SQS</option><option value="lambda">AWS Lambda</option><option value="gateway">API Gateway</option></select></div>
+      <button type="submit">Check my recall</button>
+      <p id="request-path-result" class="result" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section>
+    <h2>6 · Apply it</h2>
+    <p>Redraw this path from memory:</p>
+    <div class="card"><p><strong>Client</strong> → <strong>API Gateway</strong> → <strong>Lambda</strong> → <strong>Bedrock</strong></p></div>
+    <p>For each arrow, write:</p>
+    <ol>
+      <li><strong>Identity:</strong> Name the principal that makes the request.</li>
+      <li><strong>Failure:</strong> State one specific failure mode.</li>
+      <li><strong>Evidence:</strong> Name the log, metric, trace, CloudTrail event, response code, or request ID that would help diagnose it.</li>
+    </ol>
+    <p>Finally, answer: <em>Why should Lambda invoke Bedrock instead of giving the browser direct Bedrock permission?</em></p>
+  </section>
+
+  <section>
+    <h2>7 · Review</h2>
+    <p>Send your annotated path and final answer to your teacher. Feedback will check terminology and reasoning. It will not require concepts that this lesson did not teach.</p>
+  </section>
+
+  <nav class="next card">
+    <a href="0001-find-your-starting-line.html">← Placement activity</a>
+    <a href="0003-global-infrastructure.html">Lesson 0003 →</a>
+  </nav>
+</main>
+<script src="../assets/request-path.js"></script>
+</body>
+</html>

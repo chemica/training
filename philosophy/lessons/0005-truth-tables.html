@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Lesson 5 — Truth Tables as Exhaustive Tests</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script defer src="../assets/quiz.js"></script>
+</head>
+<body><main>
+  <p class="eyebrow">Lesson 5 · Truth-functional logic · 10–15 minutes</p>
+  <h1>Make every case show its hand</h1>
+  <p class="lede">Truth tables turn a claim about every valuation into a finite inspection. Learn to evaluate connectives, classify formulas, and find the one row that breaks an argument.</p>
+
+  <p>Lesson 4 introduced propositional symbols, connectives, scope, and necessary and sufficient conditions. Now those symbols acquire a precise <strong>semantics</strong>. A truth table assigns truth values to atomic sentences, then calculates the value of each larger sentence from its parts. With two atomic sentences there are four valuations. With three there are eight. In general, <var>n</var> atoms require 2<sup><var>n</var></sup> rows.</p>
+  <div class="card"><strong>Your win for today</strong><p>You will be able to use a complete truth table as an exhaustive test for tautology, contradiction, contingency, and deductive validity in classical truth-functional logic.</p></div>
+
+  <h2>One valuation is one test case</h2>
+  <p>Let <var>P</var> mean “The policy reduces suffering,” and <var>J</var> mean “The policy is just.” A valuation assigns each atom either true or false. It does not tell us which assignment describes the actual policy. Instead, it asks what follows under each assignment.</p>
+  <div class="card">
+    <table>
+      <thead><tr><th scope="col">P</th><th scope="col">J</th><th scope="col">P ∧ J</th><th scope="col">P → J</th></tr></thead>
+      <tbody>
+        <tr><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+        <tr><td>T</td><td>F</td><td>F</td><td>F</td></tr>
+        <tr><td>F</td><td>T</td><td>F</td><td>T</td></tr>
+        <tr><td>F</td><td>F</td><td>F</td><td>T</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The table is exhaustive because it includes every combination of truth values for <var>P</var> and <var>J</var>. This resembles exhaustive testing over Boolean inputs, but do not identify propositions with program variables. A valuation is a formal assignment. Whether it describes a metaphysically, physically, or morally possible situation is a further philosophical question.</p>
+  <p>This is also why a tautology in truth-functional logic is only a formal surrogate for necessary truth. “Either the policy is just or it is not just” has its truth guaranteed by its connective structure. “Two plus two equals four” may be necessary, but its necessity is not exposed by treating the whole sentence as one atom. <a href="https://forallx.openlogicproject.org/html/Ch12.html">Chapter 12 of <em>forall x: Calgary</em></a> makes this limitation explicit.</p>
+
+  <h2>The five connective rules</h2>
+  <div class="card">
+    <p><strong>Negation.</strong> ¬P reverses P.</p>
+    <p><strong>Conjunction.</strong> P ∧ J is true only when both are true.</p>
+    <p><strong>Inclusive disjunction.</strong> P ∨ J is true when at least one is true, including when both are true.</p>
+    <p><strong>Conditional.</strong> P → J is false only when P is true and J is false.</p>
+    <p><strong>Biconditional.</strong> P ↔ J is true when P and J have the same truth value.</p>
+  </div>
+  <p>The conditional deserves special care. “If P, then J” rules out the case where P obtains without J. It makes P <em>sufficient</em> for J and J <em>necessary</em> for P. When P is false, the material conditional is true regardless of J. This rule captures an important logical pattern, but it does not by itself capture relevance, causation, explanation, or ordinary conversational suggestion.</p>
+
+  <section class="exercise" aria-labelledby="q1">
+    <h2 id="q1">Retrieval check one</h2>
+    <p>Without looking back, when is A → B false?</p>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="That row makes the conditional true. Its antecedent has not obtained.">A false, B true</button>
+    <button class="choice" data-answer="correct" data-correct-feedback="Correct. The promise made by the conditional is broken only here.">A true, B false</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="When both are false, the material conditional is true.">A false, B false</button>
+    <p class="feedback" role="status" aria-live="polite"></p>
+  </section>
+
+  <h2>Build from the inside out</h2>
+  <p>For a complex formula, create columns for its atoms and then for the smallest subformulas. Work outward until you reach the <strong>main connective</strong>. Consider ¬P ∨ J.</p>
+  <div class="card">
+    <table>
+      <thead><tr><th scope="col">P</th><th scope="col">J</th><th scope="col">¬P</th><th scope="col">¬P ∨ J</th></tr></thead>
+      <tbody>
+        <tr><td>T</td><td>T</td><td>F</td><td>T</td></tr>
+        <tr><td>T</td><td>F</td><td>F</td><td>F</td></tr>
+        <tr><td>F</td><td>T</td><td>T</td><td>T</td></tr>
+        <tr><td>F</td><td>F</td><td>T</td><td>T</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The final column matches P → J exactly. So the two formulas are <strong>logically equivalent</strong>. They share a truth value on every valuation. Notice the method. We did not test a few vivid policies and generalise. We checked the entire formal state space.</p>
+
+  <h2>Read the final column</h2>
+  <p>A complete truth table classifies a formula by the pattern beneath its main connective.</p>
+  <div class="card argument">
+    <span class="tag">ALL T</span><span><strong>Tautology.</strong> True on every valuation. Example. P ∨ ¬P.</span>
+    <span class="tag">ALL F</span><span><strong>Contradiction.</strong> False on every valuation. Example. P ∧ ¬P.</span>
+    <span class="tag">MIXED</span><span><strong>Contingency.</strong> True on some valuations and false on others. Example. P ∧ J.</span>
+  </div>
+  <p>These labels describe formulas relative to this semantics. “Contradiction” here does not mean an implausible opinion or a heated disagreement. It means false on every truth-functional valuation.</p>
+
+  <section class="exercise" aria-labelledby="q2">
+    <h2 id="q2">Retrieval check two</h2>
+    <p>What is the classification of (P ∧ J) → P?</p>
+    <button class="choice" data-answer="correct" data-correct-feedback="Correct. Whenever the conjunction is true, P is true; otherwise the conditional is true.">It is tautologous</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="Try the row where both P and J are true. The formula is true there.">It is contradictory</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="Search for a false row. There is none, because a true conjunction already includes P.">It is contingent</button>
+    <p class="feedback" role="status" aria-live="polite"></p>
+  </section>
+
+  <h2>Validity is the absence of one forbidden row</h2>
+  <p>Lesson 2 defined a valid deductive argument as one with no case in which all premises are true and the conclusion false. A truth table makes that definition mechanical. Build the columns, then scan only for the forbidden pattern.</p>
+  <div class="card argument">
+    <span class="tag">P1</span><span>P → J</span>
+    <span class="tag">P2</span><span>J</span>
+    <span class="tag">C</span><span>P</span>
+  </div>
+  <div class="card">
+    <table>
+      <thead><tr><th scope="col">P</th><th scope="col">J</th><th scope="col">P → J</th><th scope="col">J</th><th scope="col">P</th></tr></thead>
+      <tbody>
+        <tr><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+        <tr><td>T</td><td>F</td><td>F</td><td>F</td><td>T</td></tr>
+        <tr><td>F</td><td>T</td><td>T</td><td>T</td><td><strong>F</strong></td></tr>
+        <tr><td>F</td><td>F</td><td>T</td><td>F</td><td>F</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The third row is a countermodel. Both premises are true and the conclusion is false. The argument affirms the consequent and is invalid. One forbidden row defeats validity. If an exhaustive table contains no forbidden row, the argument is valid.</p>
+  <p class="takeaway">For a formula, inspect the whole final column. For an argument, hunt for a row with every premise true and the conclusion false.</p>
+
+  <section class="exercise" aria-labelledby="q3">
+    <h2 id="q3">Interleaved check</h2>
+    <p>A table for premises A ∨ B and ¬A, with conclusion B, has no row where both premises are true and the conclusion false. What follows?</p>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="Validity does not establish whether the premises are actually true.">The premises are true</button>
+    <button class="choice" data-answer="correct" data-correct-feedback="Correct. Exhausting the valuations without finding the forbidden row establishes validity.">The inference is valid</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="The conclusion can be contingent even though it validly follows from these premises.">The conclusion is tautologous</button>
+    <p class="feedback" role="status" aria-live="polite"></p>
+  </section>
+
+  <h2>A disciplined workflow</h2>
+  <ol>
+    <li><strong>Symbolise carefully.</strong> A flawless table cannot rescue a mistranslation.</li>
+    <li><strong>List the atoms.</strong> Make 2<sup><var>n</var></sup> rows in a systematic T and F pattern.</li>
+    <li><strong>Calculate inward to outward.</strong> Give each useful subformula a column.</li>
+    <li><strong>Read for the task.</strong> Classify the final column, compare columns for equivalence, or hunt the forbidden validity row.</li>
+    <li><strong>Translate the result back.</strong> Explain what the decisive row means in the original subject matter.</li>
+  </ol>
+  <p>The final step matters in debate. “Row three is T, T, F” is a formal diagnosis. “A text might contain no contradictions yet still be fallible” exposes the live philosophical possibility.</p>
+
+  <section class="exercise" aria-labelledby="final">
+    <h2 id="final">Final exercise. Test a worldview argument</h2>
+    <blockquote>If a revelation is infallible, it contains no contradictions. This revelation contains no contradictions. Therefore, this revelation is infallible.</blockquote>
+    <p>Let R mean “This revelation is infallible” and N mean “This revelation contains no contradictions.” Without looking back, do five things.</p>
+    <ol>
+      <li>Symbolise the two premises and conclusion.</li>
+      <li>Build all four rows for R and N.</li>
+      <li>Mark any row where all premises are true and the conclusion false.</li>
+      <li>State whether the argument is valid.</li>
+      <li>Translate the decisive row into an intelligible scenario rather than merely reporting letters.</li>
+    </ol>
+    <p>Send me your table and explanation. I will check both the calculation and whether your scenario genuinely interprets the countermodel. Then I can defend the inference and let you challenge it in a short mock debate. Ask me any follow-up question if scope, conditionals, or the table mechanics remain unclear.</p>
+  </section>
+
+  <h2>Primary reading</h2>
+  <p>Read <a href="https://forallx.openlogicproject.org/html/Ch11.html">Chapter 11, “Complete truth tables,”</a> and <a href="https://forallx.openlogicproject.org/html/Ch12.html">Chapter 12, “Semantic concepts,”</a> in Richard Zach and Aaron Thomas-Bolduc’s open textbook <em>forall x: Calgary</em>. The chapters develop the method, definitions, validity tests, and exercises used here. Keep the <a href="../reference/0001-core-argument-glossary.html">core argument glossary</a> nearby.</p>
+
+  <footer>Mission link. Exhaustive formal testing helps you separate a seductive conclusion from the inferential route that supposedly supports it. Previous lesson. Propositional symbolisation, scope, and necessary and sufficient conditions.</footer>
+</main></body>
+</html>

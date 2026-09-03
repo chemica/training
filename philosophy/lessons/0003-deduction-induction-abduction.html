@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Lesson 3 — Three Ways Reasons Support Conclusions</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script defer src="../assets/quiz.js"></script>
+</head>
+<body><main>
+  <p class="eyebrow">Lesson 3 · Logic · About 12 minutes</p>
+  <h1>Three ways reasons can carry you</h1>
+  <p class="lede">Not every good argument is a proof. Learn to tell deduction, induction, and abduction apart—then judge each by the right standard.</p>
+
+  <p>In <a href="0001-break-an-argument.html">Lesson 1</a>, you separated premises from conclusions and tested whether the conclusion could be false while the premises were true. Lesson 2 sharpened the distinction between the <em>shape</em> of an inference and the truth of its claims. Now we add a crucial question: <strong>what kind of support is the argument trying to provide?</strong></p>
+
+  <div class="card">
+    <p><strong>Deduction</strong> aims at necessity. If the premises are true, the conclusion cannot be false.</p>
+    <p><strong>Induction</strong> aims at probability. Observed cases make an unobserved case or generalisation more likely.</p>
+    <p><strong>Abduction</strong> aims at explanatory superiority. A hypothesis is supported because it explains the evidence better than its rivals.</p>
+  </div>
+  <p class="takeaway">First identify the intended destination: certainty, probability, or the best explanation.</p>
+
+  <h2>Deduction preserves what the premises contain</h2>
+  <p>A deductive argument does not ask how likely its conclusion is. It asks whether the premises <em>guarantee</em> it. The standard is binary: valid or invalid. This is a relation between premises and conclusion, not a compliment paid to persuasive prose.</p>
+  <div class="card argument">
+    <span class="tag">P1</span><span>If objective moral duties exist, then at least some actions are wrong independently of anyone’s approval.</span>
+    <span class="tag">P2</span><span>Objective moral duties exist.</span>
+    <span class="tag">C</span><span>Therefore, at least some actions are wrong independently of anyone’s approval.</span>
+  </div>
+  <p>This is valid. It says nothing yet about whether objective duties exist. Deduction can transmit certainty from premises to conclusion, but it cannot manufacture certainty about its starting points.</p>
+
+  <h2>Induction extends a pattern</h2>
+  <p>Induction is <em>ampliative</em>. Its conclusion goes beyond what is already guaranteed by the premises. You have repeatedly found that careful source-checking reduces your false beliefs. You infer that it will probably help next time. Even with true premises, the conclusion could fail. That possibility does not make the inference bad.</p>
+  <div class="card argument">
+    <span class="tag">P1</span><span>Across many cultures and eras, people have reported experiences they interpret as encounters with a transcendent reality.</span>
+    <span class="tag">C</span><span>Therefore, future societies will probably contain similar reports.</span>
+  </div>
+  <p>Assess this by asking about sample size, representativeness, background knowledge, and possible defeaters. Calling it “invalid” misses the point. Induction never promised necessity. Philosophers disagree about how induction is justified; David Hume’s challenge is that past regularity cannot non-circularly prove that nature will remain regular. The <a href="https://plato.stanford.edu/entries/induction-problem/">Stanford Encyclopedia of Philosophy’s entry on the problem of induction</a> develops that problem.</p>
+
+  <h2>Abduction asks what would make sense of the evidence</h2>
+  <p>Abduction, or <em>inference to the best explanation</em>, begins with something to be explained and compares hypotheses. A detective, scientist, historian, theist, and atheist may all reason this way. The conclusion is not merely a forecast. It says which proposed explanation deserves preference.</p>
+  <div class="card argument">
+    <span class="tag">E</span><span>The universe appears governed by mathematically describable regularities and contains conscious agents capable of discovering them.</span>
+    <span class="tag">H1</span><span>A purposive intelligence explains this order.</span>
+    <span class="tag">H2</span><span>Impersonal laws, selection effects, or a deeper physical theory explain it.</span>
+    <span class="tag">C</span><span>One hypothesis is the best available explanation of the evidence.</span>
+  </div>
+  <p>Both theistic and naturalistic arguments often have this structure, even when presented as proofs. The real work lies in comparing rivals. Useful virtues include explanatory scope, explanatory power, fit with background knowledge, simplicity, and freedom from ad hoc repairs. These virtues can conflict, and they do not form an infallible scoring algorithm. See the <a href="https://plato.stanford.edu/entries/abduction/">Stanford Encyclopedia of Philosophy’s survey of abduction</a>.</p>
+
+  <section class="exercise" aria-labelledby="q1">
+    <h2 id="q1">Retrieval check one</h2>
+    <p>A new medication helped 78 percent of a large, representative trial group. Therefore, it will probably help the next relevant patient. What kind of support is intended?</p>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="Deduction would guarantee the outcome. A trial frequency does not do that.">Deductive support</button>
+    <button class="choice" data-answer="correct" data-correct-feedback="Correct. The observed frequency raises the probability of an unobserved case.">Inductive support</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="Not this time. No rival hypotheses are being compared for explanatory merit.">Abductive support</button>
+    <p class="feedback" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="exercise" aria-labelledby="q2">
+    <h2 id="q2">Retrieval check two</h2>
+    <p>Your keys are absent from their usual place. A damp coat lies by the door, and your partner has just returned home. “My partner moved the keys” fits these clues better than “the keys ceased to exist.” What kind of support is intended?</p>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="The clues do not logically entail who moved the keys.">Deductive support</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="A past frequency could contribute, but this inference primarily compares explanations of present clues.">Inductive support</button>
+    <button class="choice" data-answer="correct" data-correct-feedback="Correct. The claim is preferred as the best explanation among rivals.">Abductive support</button>
+    <p class="feedback" role="status" aria-live="polite"></p>
+  </section>
+
+  <h2>One claim can enter three different arguments</h2>
+  <p>“Moral realism is true” could be the conclusion of very different inferences.</p>
+  <div class="card">
+    <p><strong>Deductive.</strong> If some acts are wrong regardless of anyone’s attitudes, moral realism is true. Some acts are wrong regardless of anyone’s attitudes. Therefore, moral realism is true.</p>
+    <p><strong>Inductive.</strong> Many independently investigated cases of apparently objective moral reasons have survived criticism. So further cases will probably survive too.</p>
+    <p><strong>Abductive.</strong> Moral realism explains moral disagreement, reform, and the felt authority of moral reasons better than its rivals do. So moral realism is probably the best explanation.</p>
+  </div>
+  <p>The shared conclusion does not make these the same argument. Each can fail differently. Attack the deductive version with a countermodel or a false premise. Test the inductive version for a poor sample or unreliable projection. Challenge the abductive version with a better rival explanation or a dispute about explanatory virtues.</p>
+
+  <h2>The category is an interpretation, not a label in the sentence</h2>
+  <p>Words such as “necessarily” and “probably” offer clues, but speakers often leave their intended strength unstated. Apply the <strong>charity test</strong>. Which reconstruction makes the argument strongest while remaining faithful to what the person plausibly meant? A cosmological argument may contain deductive subarguments and an abductive overall case. An evolutionary explanation may combine statistical induction with explanatory comparison. Real reasoning is often a pipeline, not a single opcode.</p>
+
+  <section class="exercise" aria-labelledby="dialogue">
+    <h2 id="dialogue">Dialogue challenge</h2>
+    <blockquote>“Conscious experience is radically unlike anything described by physics. The best explanation is that consciousness is fundamental rather than produced by matter.”</blockquote>
+    <p>Without searching, send me a short reply containing four moves.</p>
+    <ol>
+      <li>Name the main mode of support and explain why.</li>
+      <li>State the argument’s evidence and conclusion separately.</li>
+      <li>Offer the strongest rival explanation you can.</li>
+      <li>Name one fact that would shift your comparison toward either side.</li>
+    </ol>
+    <p>I’ll answer first as your tutor, then as a defender of the position you judged weakest. Ask follow-up questions about anything unclear.</p>
+  </section>
+
+  <h2>Primary reading</h2>
+  <p>Read the sections on deduction and induction in the <a href="https://iep.utm.edu/deductive-inductive-arguments/">Internet Encyclopedia of Philosophy’s “Deductive and Inductive Arguments”</a>. Then read sections 1 and 2 of the <a href="https://plato.stanford.edu/entries/abduction/">Stanford Encyclopedia of Philosophy’s “Abduction”</a>. Use the <a href="../reference/0001-core-argument-glossary.html">core argument glossary</a> while you work.</p>
+
+  <footer>Mission link: identify what an argument genuinely promises before using it to shape your worldview, debate an opponent, or make a moral decision.</footer>
+</main></body>
+</html>

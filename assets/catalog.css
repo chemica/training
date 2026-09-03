@@ -1,0 +1,24 @@
+:root { color-scheme: light dark; --ink: #24211d; --muted: #6c655d; --paper: #f5f1e8; --card: #fffaf0; --accent: #9a3f24; --line: #d8cec0; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 18px/1.6 ui-serif, Georgia, serif; }
+main { width: min(52rem, calc(100% - 2rem)); margin: 0 auto; padding: 3rem 0 5rem; }
+h1, h2, h3 { line-height: 1.15; text-wrap: balance; }
+h1 { font-size: clamp(2.3rem, 8vw, 4.8rem); margin: .25rem 0 1rem; letter-spacing: -.04em; }
+h2 { margin-top: 2.5rem; }
+a { color: var(--accent); text-underline-offset: .16em; }
+.eyebrow, .count, footer { color: var(--muted); font: 700 .76rem/1.4 ui-sans-serif, system-ui, sans-serif; letter-spacing: .09em; text-transform: uppercase; }
+.lede { max-width: 42rem; font-size: 1.22rem; }
+.course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; margin-top: 2.5rem; }
+.course-card, .track { padding: 1.1rem 1.25rem; background: var(--card); border: 1px solid var(--line); border-radius: .65rem; }
+.course-card h2, .track h3 { margin: 0 0 .55rem; }
+.resource-list, .audio-list { padding-left: 1.3rem; }
+.resource-list li { margin: .55rem 0; }
+.audio-list { display: grid; gap: 1rem; }
+.track { padding-left: 1.25rem; }
+audio { display: block; width: 100%; margin: .7rem 0; }
+.download { font: 700 .85rem/1.4 ui-sans-serif, system-ui, sans-serif; }
+.empty { color: var(--muted); font-style: italic; }
+nav { margin-bottom: 2rem; }
+footer { margin-top: 4rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+code { font-size: .9em; overflow-wrap: anywhere; }
+@media (prefers-color-scheme: dark) { :root { --ink: #eee7dc; --muted: #b9aea0; --paper: #171512; --card: #211e1a; --accent: #f0a07f; --line: #413a32; } }

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Lesson 2 — Validity, Soundness, and Countermodels</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script defer src="../assets/quiz.js"></script>
+</head>
+<body><main>
+  <p class="eyebrow">Lesson 2 · Deductive logic · 10–15 minutes</p>
+  <h1>Truth here. Truth everywhere.</h1>
+  <p class="lede">A true conclusion can be reached badly. A valid argument can begin falsely. Today you will learn to keep those judgments separate—and break bad inferences with one decisive countermodel.</p>
+
+  <p><a href="0001-break-an-argument.html">Lesson 1</a> gave you a two-pass debugger. First test the inference; then test the premises. Now we will make that first pass precise.</p>
+
+  <h2>Three questions, not one</h2>
+  <p>Suppose somebody argues that Ada is in London because she is in England. You could ask three different questions.</p>
+  <div class="card argument">
+    <span class="tag">TRUTH</span><span>Are the individual claims true in the actual world?</span>
+    <span class="tag">VALIDITY</span><span>Could the premises all be true while the conclusion is false?</span>
+    <span class="tag">SOUNDNESS</span><span>Is the inference valid <em>and</em> is every premise actually true?</span>
+  </div>
+  <p>A deductive argument is <strong>valid</strong> when there is no possible case in which all its premises are true and its conclusion is false. Validity therefore concerns a relationship, not the actual truth of any one sentence. A valid argument is <strong>sound</strong> when its premises are also actually true. These are the standard semantic definitions used in introductory formal logic. <a href="https://forallx.openlogicproject.org/html/">See <em>forall x: Calgary</em>, Part I</a>.</p>
+  <p class="takeaway">Actual truth belongs to claims. Validity belongs to inferences. Soundness combines them.</p>
+
+  <h2>The four useful combinations</h2>
+  <div class="card">
+    <p><strong>Valid, true premises.</strong> The conclusion must be true. The argument is sound.</p>
+    <p><strong>Valid, at least one false premise.</strong> The conclusion may be true or false. The argument is unsound.</p>
+    <p><strong>Invalid, true premises.</strong> The conclusion may happen to be true, but the premises do not guarantee it.</p>
+    <p><strong>Invalid, at least one false premise.</strong> Again, the conclusion may be either true or false.</p>
+  </div>
+  <p>Only one combination is impossible. A valid argument cannot have all true premises and a false conclusion. That impossible row is the whole definition of validity.</p>
+
+  <section class="exercise" aria-labelledby="q1">
+    <h2 id="q1">Retrieval check 1</h2>
+    <p>All mammals are warm-blooded. Whales are mammals. Therefore, whales are warm-blooded. What is established if both premises are actually true?</p>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="Validity alone is too weak. The prompt also grants true premises.">The inference is merely valid.</button>
+    <button class="choice" data-answer="correct" data-correct-feedback="Correct. Valid form plus actually true premises makes a sound argument.">The argument is fully sound.</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="Necessity of the conclusion itself does not follow. It is the conditional connection that is necessary.">The conclusion is logically necessary.</button>
+    <p class="feedback" role="status" aria-live="polite"></p>
+  </section>
+
+  <h2>Actual does not mean necessary</h2>
+  <p>“London is the capital of the United Kingdom” is actually true. But logic does not make it true in every possible situation. Political history could have unfolded differently. By contrast, “Either London is the capital or London is not the capital” is true under every classical valuation of its component claim. It is a logical truth.</p>
+  <p>This distinction prevents a common confusion. A valid argument need not contain a conclusion that is true in every possible world. What must hold in every relevant case is the <em>conditional guarantee</em>. Whenever the premises are all true, the conclusion is true too.</p>
+  <div class="card argument">
+    <span class="tag">P1</span><span>If the server is offline, the health check fails.</span>
+    <span class="tag">P2</span><span>The server is offline.</span>
+    <span class="tag">C</span><span>Therefore, the health check fails.</span>
+  </div>
+  <p>The conclusion is contingent. The health check need not fail in every possible situation. Yet the inference is valid because there is no case satisfying both premises while falsifying the conclusion.</p>
+
+  <h2>Countermodels are failing test cases</h2>
+  <p>A <strong>countermodel</strong> is one possible interpretation under which every premise is true and the conclusion is false. Think of it as the smallest failing test for a claimed guarantee. One countermodel proves invalidity. A hundred cases in which premises and conclusion are all true do not prove validity, because the forbidden case may still be hiding.</p>
+  <div class="card argument">
+    <span class="tag">P1</span><span>If the database is down, login fails.</span>
+    <span class="tag">P2</span><span>Login fails.</span>
+    <span class="tag">C</span><span>Therefore, the database is down.</span>
+  </div>
+  <p>Construct the countermodel. The database is running, but the identity provider is down. Then P1 is true, because it correctly says what would happen if the database were down. P2 is true, because login does fail. The conclusion is false, because the database is not down. The argument is invalid. Its form is the familiar error of affirming the consequent.</p>
+
+  <section class="exercise" aria-labelledby="q2">
+    <h2 id="q2">Retrieval check 2</h2>
+    <p>If moral facts exist, some moral judgments are correct. Some moral judgments are correct. Therefore, moral facts exist. Which response directly tests validity?</p>
+    <button class="choice" data-answer="correct" data-correct-feedback="Correct. That case grants both premises while denying the conclusion—the exact shape of a countermodel.">Correct judgments might arise without moral facts.</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="That challenges a premise. It may matter to soundness, but it does not directly test the inference.">No moral judgment is ever correct.</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="Agreement is evidence about belief, not a case with true premises and a false conclusion.">Most cultures share several moral judgments.</button>
+    <p class="feedback" role="status" aria-live="polite"></p>
+  </section>
+
+  <h2>A mechanical test</h2>
+  <ol>
+    <li><strong>Freeze the wording.</strong> Identify the premises and conclusion charitably.</li>
+    <li><strong>Grant every premise.</strong> Do not argue with them yet.</li>
+    <li><strong>Deny the conclusion.</strong> Describe a coherent case where it is false.</li>
+    <li><strong>Check compatibility.</strong> Can all those assignments hold together?</li>
+  </ol>
+  <p>If yes, you have a countermodel and the inference is invalid. If no coherent countermodel exists, the argument may be valid—but confidence sometimes requires formalization or proof. Then return to pass two and investigate whether the premises are actually true.</p>
+
+  <section class="exercise" aria-labelledby="q3">
+    <h2 id="q3">Interleaved challenge</h2>
+    <p>Which argument is valid but clearly unsound?</p>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="A silent alarm gives a countermodel. The premises could be true while the conclusion is false.">If fire, alarm. Alarm. Therefore fire.</button>
+    <button class="choice" data-answer="correct" data-correct-feedback="Correct. The form is valid, but its first premise is actually false.">All birds code. Ravens are birds. Therefore ravens code.</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="This is invalid, and its premises are not both clearly false. Rain could have another cause.">If clouds, rain. Rain. Therefore clouds.</button>
+    <p class="feedback" role="status" aria-live="polite"></p>
+  </section>
+
+  <h2>Your turn. A dialogue test</h2>
+  <p>Imagine I say this in a debate.</p>
+  <blockquote>“If God revealed a moral law, some moral duties would be objectively binding. Some moral duties are objectively binding. So God revealed a moral law.”</blockquote>
+  <p>Reply to me in four moves.</p>
+  <ol>
+    <li>Name the conclusion and say whether you are testing truth, validity, or soundness.</li>
+    <li>Grant both premises temporarily.</li>
+    <li>Offer the most philosophically serious countermodel you can.</li>
+    <li>Explain why your countermodel attacks the inference without yet proving atheism or disproving objective morality.</li>
+  </ol>
+  <p>Send me your answer. I will first mark the logical structure, then defend the argument as strongly as I can so you can practise the next round. Ask follow-up questions about anything unclear.</p>
+
+  <h2>Primary reading</h2>
+  <p>Read <a href="https://forallx.openlogicproject.org/html/">Part I of <em>forall x: Calgary</em></a>, especially the sections on validity and soundness. For a prose treatment, compare the <a href="https://iep.utm.edu/deductive-inductive-arguments/">Internet Encyclopedia of Philosophy on deductive and inductive arguments</a>. Keep the <a href="../reference/0001-core-argument-glossary.html">core argument glossary</a> open while practising.</p>
+  <footer>Mission link. Separate truth from consequence so worldview debates and moral decisions turn on the real point of disagreement. Previous. <a href="0001-break-an-argument.html">Break an argument</a>.</footer>
+</main></body>
+</html>

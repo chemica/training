@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lesson 0001 — Find your starting line</title>
+  <link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">Placement 0001 · Not an assessed lesson</div>
+    <h1>Find your starting line.</h1>
+    <p class="lede">This optional placement activity selects a starting point. It does not test AWS knowledge, count toward mastery, or assume that you have already studied the course.</p>
+    <p class="meta">No AWS account or payment required · Answers stay in this browser until you copy them</p>
+  </header>
+
+  <section>
+    <h2>The tangible win</h2>
+    <p>At the end you will have a compact learner profile that tells your teacher where to begin, which programming language to use, and what business result should anchor every exercise.</p>
+    <aside class="callout"><strong>This is self-report, not learn-then-test.</strong> There are no correct answers. Choosing “never tried it” prevents later lessons from silently depending on a missing foundation.</aside>
+  </section>
+
+  <form id="diagnostic">
+    <section>
+      <h2>1. Place your current skills</h2>
+      <p>Choose the highest statement you could demonstrate today without following a tutorial.</p>
+
+      <div class="card question">
+        <h3>Terminal</h3>
+        <div class="options">
+          <label class="option"><input type="radio" name="terminal" value="0" required> I have not used a terminal.</label>
+          <label class="option"><input type="radio" name="terminal" value="1"> I can navigate folders and run commands.</label>
+          <label class="option"><input type="radio" name="terminal" value="2"> I can inspect processes, files, and environment configuration.</label>
+        </div>
+      </div>
+
+      <div class="card question">
+        <h3>Git</h3>
+        <div class="options">
+          <label class="option"><input type="radio" name="git" value="0" required> I have not used Git.</label>
+          <label class="option"><input type="radio" name="git" value="1"> I can clone, commit, and view history.</label>
+          <label class="option"><input type="radio" name="git" value="2"> I can branch, merge, review, and resolve conflicts.</label>
+        </div>
+      </div>
+
+      <div class="card question">
+        <h3>HTTP and APIs</h3>
+        <div class="options">
+          <label class="option"><input type="radio" name="http" value="0" required> These ideas are new to me.</label>
+          <label class="option"><input type="radio" name="http" value="1"> I can call an API and inspect JSON.</label>
+          <label class="option"><input type="radio" name="http" value="2"> I can design, secure, debug, and test an API.</label>
+        </div>
+      </div>
+
+      <div class="card question">
+        <h3>Programming</h3>
+        <div class="options">
+          <label class="option"><input type="radio" name="code" value="0" required> I have not written programs.</label>
+          <label class="option"><input type="radio" name="code" value="1"> I can write functions and use libraries.</label>
+          <label class="option"><input type="radio" name="code" value="2"> I can structure, test, debug, and deploy applications.</label>
+        </div>
+      </div>
+
+      <div class="card question">
+        <h3>AWS</h3>
+        <div class="options">
+          <label class="option"><input type="radio" name="aws" value="0" required> I have never used AWS.</label>
+          <label class="option"><input type="radio" name="aws" value="1"> I can use several services with guidance.</label>
+          <label class="option"><input type="radio" name="aws" value="2"> I can deploy and troubleshoot workloads independently.</label>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Choose the learning constraints</h2>
+      <div class="card question">
+        <label for="weekly_hours"><strong>How many focused hours can you protect most weeks?</strong></label>
+        <input id="weekly_hours" name="weekly_hours" type="text" placeholder="For example: 6 hours across three evenings" required>
+      </div>
+      <div class="card question">
+        <label for="language"><strong>Which programming language should the builds use?</strong></label>
+        <input id="language" name="language" type="text" placeholder="Python, TypeScript, no preference, or something else" required>
+      </div>
+    </section>
+
+    <section>
+      <h2>3. Make the mission real</h2>
+      <p>If you already have a direction, describe the desired change rather than the technology. It is fine to write “open for now”; qualification-directed learning does not depend on choosing a product prematurely.</p>
+      <div class="card question">
+        <label for="business_outcome"><strong>What job should become faster, safer, cheaper, or possible?</strong></label>
+        <textarea id="business_outcome" name="business_outcome" placeholder="For example: open for now"></textarea>
+      </div>
+      <div class="card question">
+        <label for="business_data"><strong>What data would the system read or change, and how sensitive is it?</strong></label>
+        <textarea id="business_data" name="business_data" placeholder="For example: not established yet"></textarea>
+      </div>
+      <div class="card question">
+        <label for="community"><strong>Are you willing to ask practitioners for design feedback?</strong></label>
+        <input id="community" name="community" type="text" placeholder="Yes, no, or only anonymously" required>
+      </div>
+    </section>
+
+    <button type="submit">Create my learner profile</button>
+    <div id="result" class="result" aria-live="polite"></div>
+  </form>
+
+  <section>
+    <h2>Primary source</h2>
+    <p>Skim the introductions and target-candidate descriptions in the official <a href="https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01.html">AIF-C01 guide</a> and <a href="https://docs.aws.amazon.com/aws-certification/latest/ai-professional-01.html">AIP-C01 guide</a>. Notice the difference between foundational awareness and production experience. Do not study the domain lists yet.</p>
+  </section>
+
+  <nav class="next card">
+    <div><strong>Next:</strong> send the generated learner profile to your teacher. Ask follow-up questions about anything that felt ambiguous.</div>
+    <a href="0002-trace-a-serverless-request.html">Continue to Lesson 0002 →</a>
+  </nav>
+</main>
+<script src="../assets/diagnostic.js"></script>
+</body>
+</html>

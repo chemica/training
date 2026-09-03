@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Browser Voice Lab</title><link rel="stylesheet" href="../assets/course.css"><script defer src="../assets/speech-player.js"></script></head>
+<body><main>
+  <p class="eyebrow">Audio lab · Free browser speech</p>
+  <h1>What does your browser sound like?</h1>
+  <p class="lede">This page uses voices already exposed by your browser or operating system. Nothing is uploaded and no API is billed.</p>
+
+  <div class="card controls">
+    <label>Voice<select data-speech-voice><option>Loading voices…</option></select></label>
+    <label>Speed: <output data-speech-rate-output>1.25×</output><input data-speech-rate type="range" min="0.75" max="2" step="0.05" value="1.25"></label>
+    <label>Pitch: <output data-speech-pitch-output>1.00</output><input data-speech-pitch type="range" min="0.6" max="1.5" step="0.05" value="1"></label>
+    <div class="button-row"><button class="action" data-speech-play>Play sample</button><button class="action secondary" data-speech-stop>Stop</button></div>
+    <p class="status" data-speech-status aria-live="polite">Loading voices…</p>
+  </div>
+
+  <div data-speech-text>
+    <p>Here is your first tool for thinking clearly: treat an argument like a program you need to debug.</p>
+    <p>An argument is a set of claims in which premises are offered as reasons for a conclusion. Evaluate it in two passes. First, test the connection: could the premises all be true while the conclusion is false? Second, test the inputs: are the premises actually true and justified?</p>
+    <p>Validity asks about the connection. Soundness also asks about reality.</p>
+  </div>
+
+  <footer>Browser voices vary by device. A voice selected here may not exist on another phone or computer.</footer>
+</main></body></html>

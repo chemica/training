@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS GenAI Developer — Glossary</title>
+  <link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">Living reference · Qualification vocabulary</div>
+    <h1>Use precise words.</h1>
+    <p class="lede">This glossary grows before new terminology appears in assessed work.</p>
+  </header>
+  <section>
+    <h2>Application request path</h2>
+    <dl>
+      <dt><strong>AWS service</strong></dt><dd>A capability that AWS provides, such as Lambda or S3.</dd>
+      <dt><strong>Resource</strong></dt><dd>One configured instance of a service, such as one Lambda function or one S3 bucket.</dd>
+      <dt><strong>Client</strong></dt><dd>Software that sends a request to a service. A browser, mobile application, or another server can be a client.</dd>
+      <dt><strong>Request</strong></dt><dd>A message that asks a component to do something.</dd>
+      <dt><strong>Response</strong></dt><dd>The result that a component returns for a request.</dd>
+      <dt><strong>Synchronous</strong></dt><dd>The caller waits for the work to finish and receive a response.</dd>
+      <dt><strong>Asynchronous</strong></dt><dd>The caller submits work and does not wait for all processing to finish.</dd>
+    </dl>
+  </section>
+  <section>
+    <h2>Identity and access</h2>
+    <dl>
+      <dt><strong>Principal</strong></dt><dd>An identity that can make a request to AWS. It can represent a person, application, or AWS service.</dd>
+      <dt><strong>Authentication</strong></dt><dd>The process that verifies which principal made the request.</dd>
+      <dt><strong>Authorization</strong></dt><dd>The decision about whether an authenticated principal can perform a specific action on a specific resource.</dd>
+      <dt><strong>IAM role</strong></dt><dd>An AWS identity with permissions that an approved principal can assume. A role supplies temporary credentials.</dd>
+      <dt><strong>IAM policy</strong></dt><dd>A JSON document that defines allowed or denied actions, resources, and optional conditions.</dd>
+      <dt><strong>Least privilege</strong></dt><dd>The practice of granting only the permissions required for the task.</dd>
+      <dt><strong>Temporary credentials</strong></dt><dd>Short-lived access values issued for a session. They reduce the exposure caused by long-lived keys.</dd>
+    </dl>
+  </section>
+  <section>
+    <h2>Failure and evidence</h2>
+    <dl>
+      <dt><strong>Failure mode</strong></dt><dd>One specific way in which a component or interaction can fail.</dd>
+      <dt><strong>Timeout</strong></dt><dd>A failure that occurs when work does not complete inside an allowed time.</dd>
+      <dt><strong>Throttle</strong></dt><dd>A temporary rejection because requests exceed an allowed rate or capacity.</dd>
+      <dt><strong>Log</strong></dt><dd>A timestamped record of an event with diagnostic details.</dd>
+      <dt><strong>Metric</strong></dt><dd>A numeric measurement recorded over time, such as error count or latency.</dd>
+      <dt><strong>Trace</strong></dt><dd>A connected record that follows one request through multiple components.</dd>
+      <dt><strong>CloudTrail event</strong></dt><dd>An audit record of an AWS API action. It helps answer who did what, when, and against which resource.</dd>
+      <dt><strong>Request ID</strong></dt><dd>An identifier for one request. It helps correlate evidence from different components.</dd>
+      <dt><strong>Observability</strong></dt><dd>The ability to understand system state and behavior from evidence such as logs, metrics, and traces.</dd>
+    </dl>
+  </section>
+  <section>
+    <h2>Cloud infrastructure</h2>
+    <dl>
+      <dt><strong>Region</strong></dt><dd>A separate geographic area in which AWS operates infrastructure.</dd>
+      <dt><strong>Availability Zone</strong></dt><dd>Independent infrastructure locations inside a Region.</dd>
+      <dt><strong>Edge location</strong></dt><dd>A site used by edge services to place content or processing near users.</dd>
+      <dt><strong>Elasticity</strong></dt><dd>Dynamic adjustment of capacity as demand changes.</dd>
+      <dt><strong>High availability</strong></dt><dd>A design goal that keeps a system usable despite component failure.</dd>
+      <dt><strong>Shared responsibility</strong></dt><dd>The division between AWS security of the cloud and customer security in the cloud.</dd>
+    </dl>
+  </section>
+  <section>
+    <h2>Account and cost controls</h2>
+    <dl>
+      <dt><strong>Root user</strong></dt><dd>The full-access identity created with an AWS account email address.</dd>
+      <dt><strong>Federation</strong></dt><dd>Using an external identity system to obtain AWS role access.</dd>
+      <dt><strong>Explicit deny</strong></dt><dd>A policy decision that overrides an applicable allow.</dd>
+      <dt><strong>AWS Budget</strong></dt><dd>A cost or usage threshold with notifications and optional actions.</dd>
+      <dt><strong>Tag</strong></dt><dd>A key-value label attached to an AWS resource.</dd>
+    </dl>
+  </section>
+  <section>
+    <h2>AI and generative AI</h2>
+    <dl>
+      <dt><strong>Supervised learning</strong></dt><dd>Learning from examples that include known target labels.</dd>
+      <dt><strong>Unsupervised learning</strong></dt><dd>Learning patterns without target labels for the pattern sought.</dd>
+      <dt><strong>Classification</strong></dt><dd>Predicting a category.</dd>
+      <dt><strong>Regression</strong></dt><dd>Predicting a numeric value.</dd>
+      <dt><strong>Clustering</strong></dt><dd>Grouping examples by similarity without supplied target groups.</dd>
+      <dt><strong>Token</strong></dt><dd>A unit of content processed by a model.</dd>
+      <dt><strong>Context window</strong></dt><dd>The token capacity available for model input and output.</dd>
+      <dt><strong>Embedding</strong></dt><dd>A numeric vector representing semantic properties of data.</dd>
+      <dt><strong>RAG</strong></dt><dd>Retrieval-augmented generation: retrieving external information and supplying it as model context.</dd>
+      <dt><strong>Fine-tuning</strong></dt><dd>Additional training that adjusts model behavior using task-specific examples.</dd>
+      <dt><strong>Few-shot prompt</strong></dt><dd>A prompt containing a small set of task examples.</dd>
+      <dt><strong>Guardrail</strong></dt><dd>A configured safety or policy control applied to model input or output.</dd>
+      <dt><strong>Evaluation dataset</strong></dt><dd>A fixed set of representative inputs used to compare behavior.</dd>
+    </dl>
+  </section>
+  <section>
+    <h2>Responsible AI</h2>
+    <dl>
+      <dt><strong>Governance</strong></dt><dd>The decisions, ownership, policies, controls, and evidence used to direct and oversee AI.</dd>
+      <dt><strong>Preventive control</strong></dt><dd>A control intended to stop an unwanted event.</dd>
+      <dt><strong>Detective control</strong></dt><dd>A control intended to identify an event or condition.</dd>
+      <dt><strong>Corrective control</strong></dt><dd>A control intended to restore an acceptable state.</dd>
+      <dt><strong>Human oversight</strong></dt><dd>Meaningful human ability to review, intervene, or override.</dd>
+    </dl>
+  </section>
+  <section>
+    <h2>Development and delivery</h2>
+    <dl>
+      <dt><strong>AWS SDK</strong></dt><dd>A language library for constructing and sending AWS API requests.</dd>
+      <dt><strong>Lambda handler</strong></dt><dd>The configured entry point for a Lambda function.</dd>
+      <dt><strong>Lambda context</strong></dt><dd>Runtime information for one Lambda invocation.</dd>
+      <dt><strong>Visibility timeout</strong></dt><dd>The period when an SQS message is hidden after a consumer receives it.</dd>
+      <dt><strong>Idempotent operation</strong></dt><dd>An operation whose repeated execution does not create additional unintended effects.</dd>
+      <dt><strong>Dead-letter queue</strong></dt><dd>A queue that isolates messages after repeated processing failures.</dd>
+      <dt><strong>Infrastructure as code</strong></dt><dd>Version-controlled definitions of infrastructure resources.</dd>
+      <dt><strong>Stack</strong></dt><dd>A set of related resources managed as one CloudFormation unit.</dd>
+      <dt><strong>Artifact</strong></dt><dd>A versioned output supplied to deployment.</dd>
+      <dt><strong>Lambda version</strong></dt><dd>An immutable published snapshot of a Lambda function.</dd>
+      <dt><strong>Lambda alias</strong></dt><dd>A named pointer to a Lambda version.</dd>
+      <dt><strong>Runbook</strong></dt><dd>Concrete operator instructions for diagnosis, mitigation, verification, and escalation.</dd>
+    </dl>
+  </section>
+  <nav class="next card"><a href="../lessons/0002-trace-a-serverless-request.html">Return to Lesson 0002 →</a></nav>
+</main>
+</body>
+</html>

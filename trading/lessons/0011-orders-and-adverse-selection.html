@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>0011 — Orders and adverse selection</title><link rel="stylesheet" href="../assets/course.css"><script defer src="../assets/lesson.js"></script></head>
+<body><main>
+<p class="eyebrow">Lesson 0011 · 30 minutes · Execution</p>
+<h1>An order chooses a failure mode.</h1>
+<p class="lede">Today’s win: translate a chart idea into a paper order whose execution behaviour—and failure mode—you can explain before price moves.</p>
+<aside class="callout"><strong>Paper-only boundary.</strong> Every ticket here is a simulation. Do not place a live order. Crypto trades continuously, can gap between quotes, and venue rules differ. Verify exact behaviour, fees, and trigger sources before risking money.</aside>
+
+<h2>0–4 · Retrieve before reading</h2>
+<p>Write two sentences from memory: When would you care more about getting filled than controlling price? When would you accept missing a trade to control price?</p>
+<details><summary>Calibration</summary><p>A protective exit after invalidation commonly prioritises leaving; a patient pullback entry commonly prioritises price. Neither rule is universal: liquidity, size, volatility, and the cost of being wrong decide.</p></details>
+
+<h2>4–11 · The tiny market inside every chart</h2>
+<p>A candle compresses transactions. An order interacts with the live auction beneath it:</p>
+<dl>
+<dt><strong>Bid</strong></dt><dd>The highest currently displayed price a buyer is offering.</dd>
+<dt><strong>Ask (offer)</strong></dt><dd>The lowest currently displayed price a seller is offering.</dd>
+<dt><strong>Spread</strong></dt><dd>Ask minus bid. Crossing it is an immediate execution cost before fees and slippage.</dd>
+<dt><strong>Queue</strong></dt><dd>Orders waiting at one price. Many venues use price then time priority; joining a price does not put you first.</dd>
+<dt><strong>Partial fill</strong></dt><dd>Only some requested quantity executes. The remainder stays open, cancels, or follows its time-in-force.</dd>
+<dt><strong>Adverse selection</strong></dt><dd>Your order executes disproportionately when the next move is unfavourable—often because the other side reacts faster or knows more.</dd>
+</dl>
+<figure class="card" style="margin:1.5rem 0;overflow-x:auto">
+<svg viewBox="0 0 760 280" role="img" aria-labelledby="book-title book-desc" style="display:block;width:100%;min-width:620px;height:auto;font-family:ui-sans-serif,system-ui,sans-serif">
+<title id="book-title">Order book and execution paths</title><desc id="book-desc">Bid orders sit below the spread and ask orders above it. A market buy crosses to asks while a limit buy joins the bid queue.</desc>
+<rect x="18" y="18" width="724" height="244" rx="12" fill="#fffdf7" stroke="#d9d2c2"/><text x="72" y="53" font-size="16" font-weight="700" fill="#176b4d">BUYERS · BIDS</text>
+<rect x="64" y="76" width="210" height="38" rx="5" fill="#dfeee7"/><text x="78" y="101" font-size="15">99.98 · 2.4 BTC</text><rect x="64" y="120" width="180" height="38" rx="5" fill="#dfeee7"/><text x="78" y="145" font-size="15">99.97 · 1.8 BTC</text>
+<text x="313" y="91" font-size="13" fill="#607066">spread</text><path d="M285 105 H380" stroke="#ba7a16" stroke-width="3"/><path d="M285 105 l10 -6 v12z" fill="#ba7a16"/><path d="M380 105 l-10 -6 v12z" fill="#ba7a16"/>
+<text x="429" y="53" font-size="16" font-weight="700" fill="#a63d40">SELLERS · ASKS</text><rect x="421" y="76" width="190" height="38" rx="5" fill="#f3dddd"/><text x="435" y="101" font-size="15">100.00 · 0.7 BTC</text><rect x="421" y="120" width="230" height="38" rx="5" fill="#f3dddd"/><text x="435" y="145" font-size="15">100.01 · 3.1 BTC</text>
+<path d="M346 214 C390 190 413 151 455 112" fill="none" stroke="#a63d40" stroke-width="3"/><text x="330" y="238" font-size="14">market buy crosses → consumes asks</text><path d="M195 207 V161" fill="none" stroke="#176b4d" stroke-width="3"/><text x="56" y="230" font-size="14">limit buy joins bid queue ↑</text>
+</svg><figcaption>A marketable order crosses the spread. A resting limit supplies liquidity and waits in a queue.</figcaption></figure>
+<p><strong>Worked micro-example.</strong> BTC is quoted 99.98 bid / 100.00 ask. Buying now pays at least 100.00: the quoted spread is 0.02 before fees. If only 0.7 BTC is offered there and your paper order is for 1 BTC, the remaining 0.3 must find higher asks. The average fill can exceed 100.00; that difference is <em>slippage</em>.</p>
+
+<h2>11–18 · Six instructions, six trade-offs</h2>
+<section class="grid">
+<article class="card"><h3>Market</h3><p>Execute now against available opposite-side orders. Prioritises speed and fill probability, not a maximum buy or minimum sell price.</p><p><strong>Failure:</strong> slippage.</p></article>
+<article class="card"><h3>Limit</h3><p>Buy no higher, or sell no lower, than a set price. A non-marketable limit rests; a marketable limit may execute immediately up to its bound.</p><p><strong>Failure:</strong> no or partial fill.</p></article>
+<article class="card"><h3>Stop-market</h3><p>Wait for a trigger, then release a market order. It controls activation, not execution price.</p><p><strong>Failure:</strong> slippage after trigger.</p></article>
+<article class="card"><h3>Stop-limit</h3><p>Wait for the stop, then release a limit order. The stop activates; the limit bounds execution.</p><p><strong>Failure:</strong> triggered but unfilled.</p></article>
+<article class="card"><h3>Queue position</h3><p>A resting order waits behind earlier orders at its price. Trading there does not prove your turn was reached.</p><p><strong>Failure:</strong> assuming touch equals fill.</p></article>
+<article class="card"><h3>Adverse selection</h3><p>A passive “good price” may fill because price is accelerating through it. Judge the fill by what follows.</p><p><strong>Failure:</strong> confusing cheap with informed.</p></article>
+</section>
+<div class="formula">execution choice = urgency × liquidity × volatility × size × consequence of non-fill</div>
+<ol><li><strong>Must it execute?</strong> A market-style instruction may fit—but model slippage.</li><li><strong>Is a worst price essential?</strong> A limit fits—but plan for zero or partial execution.</li><li><strong>Should it exist only after confirmation?</strong> A stop supplies the trigger; its market or limit child determines the failure mode.</li><li><strong>What if nothing fills?</strong> “Miss the trade” is valid. “Improvise” is not a plan.</li></ol>
+
+<h2>18–23 · Worked paper tickets</h2>
+<article class="card"><p class="meta">Ticket A · patient pullback</p><p><strong>Observation:</strong> BTC trades at 100.20; the idea is valid only near support at 100.00.</p><p><strong>Paper instruction:</strong> limit buy 0.10 BTC at 100.02. Cancel if a five-minute candle closes below 99.80 before fill.</p><p><strong>Why:</strong> price matters more than participation. Outcomes include no fill, partial fill, or an adversely selected fill followed by a break. A touch at 100.02 remains “unknown fill” unless replay data proves sufficient traded volume and queue priority.</p></article>
+<article class="card" style="margin-top:1rem"><p class="meta">Ticket B · breakout confirmation</p><p><strong>Observation:</strong> resistance is 101.00; the hypothesis begins only above it.</p><p><strong>Paper instruction:</strong> stop-market buy 0.10 BTC, trigger 101.05. Cancel after 30 minutes if untriggered.</p><p><strong>Why:</strong> confirmation matters more than exact price. It may fill at 101.12 or worse. A stop-limit at stop 101.05 / limit 101.10 caps price but might trigger, jump to 101.20, and never fill.</p></article>
+<section class="exercise"><p><strong>Check 1.</strong> A stop-limit “protects price” during a fast break. What new risk appears?</p><button onclick="revealCheck(this,'The stop may trigger but the limit may never execute as price runs through it. Price control replaces execution certainty.')">Reveal answer</button><div class="feedback"></div></section>
+<section class="exercise"><p><strong>Check 2.</strong> A candle low touches your limit buy, then rallies. May you record a paper fill?</p><button onclick="revealCheck(this,'Not automatically. A candle does not show queue position or sufficient traded volume. Mark it uncertain unless your simulator models those facts.')">Reveal answer</button><div class="feedback"></div></section>
+
+<h2>23–28 · Timed paper lab</h2>
+<p>Open a liquid BTC market in replay or pause a live chart. No real orders. Set a five-minute timer for each:</p>
+<ol><li><strong>Pullback:</strong> choose support and draft a limit-entry ticket.</li><li><strong>Breakout:</strong> choose resistance and draft stop-market and stop-limit versions.</li></ol>
+<p>Every ticket must state:</p><ul class="checklist"><li>Side, paper quantity, type, trigger and/or limit</li><li>Current bid, ask, spread, and visible nearby depth</li><li>Expected fill, worst plausible fill, and partial-fill response</li><li>Structural invalidation, cancellation time, and consequence of non-fill</li><li>Assumed maker/taker fee—and whether it needs verification</li></ul>
+<p>Advance replay ten bars. Grade the <em>decision</em>, not P&amp;L: Did it behave as specified? Did the failure mode fit? Was any paper fill assumption unjustified?</p>
+
+<h2>28–30 · Exit test</h2>
+<section class="exercise"><p><strong>1.</strong> Quote: 50.00 / 50.04. What is the spread?</p><p><strong>2.</strong> Which instruction bounds price but can remain unfilled?</p><p><strong>3.</strong> Why can a passive buy fill be bad news?</p><p><strong>4.</strong> Contrast stop-market and stop-limit during a sudden drop.</p><button onclick="revealCheck(this,'1: 0.04. 2: A limit order. 3: Faster or better-informed sellers may hit it just before price falls—adverse selection. 4: Stop-market prioritises exit but may slip; stop-limit bounds price but may not execute. Score one each only if you named the trade-off.')">Reveal and score</button><div class="feedback"></div></section>
+<p><strong>Pass: 4/4.</strong> If you miss one, explain its failure mode aloud and retake tomorrow. Send the tickets to your LLM teacher: “Check whether each order fits the hypothesis. Challenge my fill assumptions, queue reasoning, and failure mode. Do not evaluate outcome P&amp;L.”</p>
+
+<h2>Primary sources</h2>
+<p>Venue behaviour is an implementation detail. Read the official documentation for the venue you simulate:</p>
+<ul><li>Coinbase Advanced Trade: <a href="https://docs.cdp.coinbase.com/api-reference/advanced-trade-api/rest-api/orders/create-order">Create Order</a>.</li><li>Kraken: <a href="https://support.kraken.com/articles/203325783-market-and-limit-orders">market and limit orders</a> and <a href="https://support.kraken.com/articles/9616163984020-stop-loss-limit-orders">stop-loss limit orders</a>.</li><li>Coinbase Exchange: <a href="https://docs.cdp.coinbase.com/exchange/concepts/matching-engine">matching engine</a> (price-time priority and lifecycle).</li></ul>
+<p>Ask follow-up questions whenever an order state, venue rule, or fill assumption is unclear. Ambiguity means pause the simulation—not guess.</p>
+<nav class="nav"><a href="0010-scalping-economics.html">← 0010</a><a href="../reference/price-action-protocol.html">Desk reference →</a></nav>
+</main></body></html>

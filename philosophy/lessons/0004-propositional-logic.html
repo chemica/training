@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Lesson 4 — Translate Claims into Propositional Logic</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script defer src="../assets/quiz.js"></script>
+</head>
+<body><main>
+  <p class="eyebrow">Lesson 4 · Propositional logic · 10–15 minutes</p>
+  <h1>Compile a claim before you test it</h1>
+  <p class="lede">Natural language hides structure. Learn to translate claims into symbols so that scope, alternatives, and conditional commitments become visible.</p>
+  <p><a href="0003-deduction-induction-abduction.html">Lesson 3</a> asked what kind of support an argument promises. Here we focus on deductive arguments and give their sentences a precise representation.</p>
+  <div class="card"><strong>Your win for today</strong><p>You will be able to symbolise ordinary claims using negation, conjunction, disjunction, conditionals, and biconditionals—and avoid reversing necessary and sufficient conditions.</p></div>
+
+  <h2>Start with atomic propositions</h2>
+  <p>An <strong>atomic proposition</strong> is a complete claim treated as having no smaller truth-functional parts. Assign each one a capital letter and record a key.</p>
+  <div class="card argument"><span class="tag">G</span><span>God exists.</span><span class="tag">M</span><span>Objective moral facts exist.</span><span class="tag">S</span><span>Suffering has a morally sufficient reason.</span></div>
+  <p>The letter is arbitrary. Its definition is not. “God” is not a proposition because it is not true or false; “God exists” is. Keep each key stable within an argument. The method and symbols here follow the truth-functional logic chapters of <a href="https://forallx.openlogicproject.org/html/"><em>forall x: Calgary</em></a>.</p>
+
+  <h2>Five connectives build molecular claims</h2>
+  <div class="card argument"><span class="tag">¬A</span><span><strong>Not A.</strong> Negation is true when A is false.</span><span class="tag">A ∧ B</span><span><strong>A and B.</strong> Conjunction requires both.</span><span class="tag">A ∨ B</span><span><strong>A or B.</strong> Inclusive disjunction requires at least one.</span><span class="tag">A → B</span><span><strong>If A, then B.</strong> The conditional rules out A being true while B is false.</span><span class="tag">A ↔ B</span><span><strong>A if and only if B.</strong> The biconditional requires both directions.</span></div>
+  <p>In classical propositional logic, <strong>or</strong> is inclusive unless context says otherwise. So <span aria-label="A or B">A ∨ B</span> allows A alone, B alone, or both. An exclusive “either, but not both” needs more structure. <span aria-label="A or B, and not both">(A ∨ B) ∧ ¬(A ∧ B)</span>.</p>
+  <p>These connectives track truth-functional structure. They do not by themselves represent causes, explanations, obligations, time, probability, or metaphysical necessity. Formalisation is a model of what matters for the inference, not a transcription of every shade of meaning. The <a href="https://plato.stanford.edu/entries/logic-classical/">Stanford Encyclopedia of Philosophy’s “Classical Logic”</a> situates this approach within the broader study of logical consequence.</p>
+
+  <section class="exercise" aria-labelledby="q1"><h2 id="q1">Retrieval check one</h2><p>Let R mean “revelation occurs” and E mean “evidence exists.” Translate “Revelation does not occur, but evidence exists.”</p>
+    <button class="choice" data-answer="correct" data-correct-feedback="Correct. ‘But’ marks contrast in prose but has the same truth conditions as ‘and’.">¬R ∧ E</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="This negates the whole conjunction, allowing revelation to occur when evidence does not exist.">¬(R ∧ E)</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="This says neither revelation nor evidence exists, which is stronger than the sentence.">¬R ∧ ¬E</button>
+    <p class="feedback" role="status" aria-live="polite"></p></section>
+
+  <h2>Scope is where the bugs hide</h2>
+  <p>Parentheses show which connective governs which part. Compare these claims.</p>
+  <div class="card argument"><span class="tag">¬(G ∧ M)</span><span>It is not the case that both God and objective moral facts exist.</span><span class="tag">¬G ∧ M</span><span>God does not exist, and objective moral facts do exist.</span></div>
+  <p>The first allows both to be false and allows either one to be true alone. It excludes only their conjunction. The second commits to one exact combination. Moving parentheses can change a worldview claim radically.</p>
+  <p>Another contrast is easy to miss. “Not A or B” might mean <span aria-label="not A, or B">¬A ∨ B</span>, or it might mean <span aria-label="not, A or B">¬(A ∨ B)</span>. Natural language often under-specifies scope. Before symbolising, rewrite the sentence in unambiguous prose.</p>
+
+  <section class="exercise" aria-labelledby="q2"><h2 id="q2">Retrieval check two</h2><p>Let F mean “we are free” and D mean “determinism is true.” Which formula says that we are not both free and determined?</p>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="This says freedom is false while determinism is true. It selects one combination.">¬F ∧ D</button>
+    <button class="choice" data-answer="correct" data-correct-feedback="Correct. Negating the conjunction excludes exactly the case where both claims are true.">¬(F ∧ D)</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="This says freedom is false or determinism is true. It allows both to be true.">¬F ∨ D</button>
+    <p class="feedback" role="status" aria-live="polite"></p></section>
+
+  <h2>Conditionals have a direction</h2>
+  <p>In <span aria-label="A implies B">A → B</span>, A is the <strong>sufficient condition</strong>. A is enough for B. B is the <strong>necessary condition</strong>. A cannot hold without B.</p>
+  <div class="card argument"><span class="tag">PROSE</span><span>If an act is obligatory, then it is permissible.</span><span class="tag">KEY</span><span>O. The act is obligatory. P. The act is permissible.</span><span class="tag">FORM</span><span>O → P</span></div>
+  <p>Obligation is sufficient for permissibility. Permissibility is necessary for obligation. But permissibility is not sufficient for obligation. Helping a neighbour may be permissible without being required.</p>
+  <p>The words <strong>only if</strong> introduce a necessary condition. “A only if B” means <span aria-label="A implies B">A → B</span>. By contrast, “A if B” means <span aria-label="B implies A">B → A</span>. A useful test is to ask what the sentence rules out. “Salvation occurs only if grace is given” rules out salvation without grace, so <span aria-label="S implies G">S → G</span>.</p>
+
+  <section class="exercise" aria-labelledby="q3"><h2 id="q3">Retrieval check three</h2><p>Let K mean “a person knows” and J mean “the person is justified.” Translate “Justification is necessary for knowledge.”</p>
+    <button class="choice" data-answer="correct" data-correct-feedback="Correct. Knowledge cannot occur without justification, so knowledge implies justification.">K → J</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="This makes justification sufficient for knowledge, which is not what ‘necessary’ says.">J → K</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="This makes knowledge and justification equivalent, adding a direction not stated.">K ↔ J</button>
+    <p class="feedback" role="status" aria-live="polite"></p></section>
+
+  <h2>“If and only if” makes two promises</h2>
+  <p>A biconditional combines both directions. <span aria-label="A if and only if B">A ↔ B</span> is equivalent to <span aria-label="A implies B, and B implies A">(A → B) ∧ (B → A)</span>. Each claim is necessary and sufficient for the other.</p>
+  <p>Ordinary definitions often invite biconditionals. “An act is supererogatory if and only if it is morally good but beyond duty.” But beware of silently upgrading one-way claims. “Without consciousness there is no suffering” says that consciousness is necessary for suffering. It does not also say that every conscious being suffers.</p>
+
+  <h2>A five-pass translation loop</h2>
+  <div class="card"><ol><li><strong>Atomise.</strong> List the smallest complete claims relevant to the inference.</li><li><strong>Key.</strong> Assign one stable letter to each atomic proposition.</li><li><strong>Connect.</strong> Translate not, and, or, if, and if-and-only-if.</li><li><strong>Group.</strong> Add parentheses to expose scope.</li><li><strong>Back-translate.</strong> Read the formula back into prose and check whether it still says what you meant.</li></ol></div>
+  <p class="takeaway">Symbolisation does not settle whether a worldview claim is true. It makes the commitment precise enough to test.</p>
+
+  <section class="exercise" aria-labelledby="dialogue"><h2 id="dialogue">Final dialogue exercise</h2>
+    <blockquote>“Objective morality exists only if God exists. But God exists if objective morality exists. Therefore, God exists if and only if objective morality exists.”</blockquote>
+    <p>Without searching, send me a reply containing five moves.</p>
+    <ol><li>Define G and M.</li><li>Translate each premise and the conclusion.</li><li>Identify which condition is necessary and which is sufficient in each premise.</li><li>Say whether the conclusion follows deductively.</li><li>State one philosophical objection that challenges a premise rather than the inference.</li></ol>
+    <p>I’ll check your symbols and then take the strongest opposing worldview position in a short mock debate. Ask me any follow-up question if a distinction remains unclear.</p>
+  </section>
+
+  <h2>Primary reading</h2>
+  <p>Read the chapters on symbolisation in truth-functional logic in <a href="https://forallx.openlogicproject.org/html/"><em>forall x: Calgary</em></a>. It is open-access, rigorous, and includes exercises. Keep the <a href="../reference/0001-core-argument-glossary.html">core argument glossary</a> beside you.</p>
+  <footer>Mission link. Precise translation exposes hidden commitments in arguments about morality, knowledge, freedom, and God. Previous. <a href="0003-deduction-induction-abduction.html">Three ways reasons can carry you</a>.</footer>
+</main></body>
+</html>

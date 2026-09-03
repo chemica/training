@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>0010 — Scalping economics</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script defer src="../assets/lesson.js"></script>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Lesson 0010 · 30 minutes · Playbook</p>
+  <h1>Scalping is a cost problem first.</h1>
+  <p class="lede">Today’s win: turn a plausible tiny move into a complete, testable trade—and decide whether its edge survives spread, fees, slippage and execution delay.</p>
+  <div class="callout"><strong>Paper only. No leverage.</strong> This chapter is training, not a recommendation to trade. A fast strategy can produce many emotionally convincing results before there is enough evidence to estimate its true expectancy.</div>
+
+  <h2>0–4 · What scalping actually is</h2>
+  <p><strong>Scalping</strong> is a trading approach that tries to capture small price movements over short holding periods, often repeating a narrowly defined setup many times. “Fast” is not the edge. The edge, if one exists, is a repeatable difference between the probability-weighted price movement captured and the total cost of attempting to capture it.</p>
+  <p>A <strong>basis point</strong> (bp) is one hundredth of one percent: 1 bp = 0.01%, 10 bp = 0.10%, and 100 bp = 1%. Basis points make small moves easier to compare. On a £10,000 notional position, 1 bp is £1 before costs.</p>
+  <div class="grid">
+    <article class="card"><h3>Gross result</h3><p>The price movement captured before any trading costs. Buy at 100.00 and sell at 100.12: <strong>+12 bp gross</strong>.</p></article>
+    <article class="card"><h3>Friction</h3><p>Everything between the chart idea and realised result: explicit fees, spread paid, slippage, latency and missed fills.</p></article>
+    <article class="card"><h3>Net result</h3><p>What remains after friction. A +12 bp gross move with 9 bp round-trip friction is only <strong>+3 bp net</strong>.</p></article>
+  </div>
+
+  <h2>4–9 · The vocabulary of a real edge</h2>
+  <dl>
+    <dt><strong>Hit rate</strong></dt><dd>Winning trades divided by all completed trades. It says nothing about the relative size of wins and losses.</dd>
+    <dt><strong>Payoff ratio</strong></dt><dd>Average winning trade divided by average losing trade, using positive magnitudes. A 0.5 ratio means the average win is half the average loss.</dd>
+    <dt><strong>Gross expectancy</strong></dt><dd>The probability-weighted average result per trade before friction.</dd>
+    <dt><strong>Net expectancy</strong></dt><dd>The probability-weighted average result after all round-trip friction. This is the number that matters.</dd>
+    <dt><strong>Latency</strong></dt><dd>The delay between observing, deciding, submitting and executing. During that delay, price and queue position can change.</dd>
+    <dt><strong>Adverse selection</strong></dt><dd>The tendency to get filled when the other side has better short-term information or urgency. A resting buy may fill precisely because price is about to fall.</dd>
+  </dl>
+  <div class="formula">Gross expectancy = (hit rate × average gross win) − (loss rate × average gross loss)<br>Net expectancy = (hit rate × average net win) − (loss rate × average net loss)<br>Equivalent shortcut: net expectancy ≈ gross expectancy − average round-trip friction</div>
+  <p>The shortcut is useful only if every cost—including occasional large slippage—is represented in the average. Keep one unit throughout: bp is usually clearest.</p>
+
+  <h2>9–13 · The execution funnel</h2>
+  <p>A chart opportunity is progressively reduced as it passes through the trading process. This is why a backtest using candle closes and no fill model can look attractive while executable results do not.</p>
+  <svg viewBox="0 0 820 250" role="img" aria-labelledby="funnel-title funnel-desc" style="width:100%;height:auto;background:#fffdf7;border:1px solid #d9d2c2;border-radius:10px;padding:12px">
+    <title id="funnel-title">The scalp execution funnel</title>
+    <desc id="funnel-desc">A gross chart opportunity is reduced by spread and fees, then slippage and latency, then adverse selection, leaving a smaller net outcome.</desc>
+    <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#607066"/></marker></defs>
+    <g font-family="system-ui, sans-serif" text-anchor="middle">
+      <rect x="18" y="76" width="150" height="80" rx="10" fill="#eef5ef" stroke="#176b4d"/><text x="93" y="108" font-size="16" font-weight="700">Chart move</text><text x="93" y="134" font-size="15">+14 bp gross</text>
+      <line x1="174" y1="116" x2="221" y2="116" stroke="#607066" stroke-width="3" marker-end="url(#arrow)"/><text x="198" y="91" font-size="12">spread + fee</text>
+      <rect x="228" y="84" width="130" height="64" rx="10" fill="#fff8e8" stroke="#ba7a16"/><text x="293" y="111" font-size="15" font-weight="700">After costs</text><text x="293" y="134" font-size="14">+9 bp</text>
+      <line x1="364" y1="116" x2="411" y2="116" stroke="#607066" stroke-width="3" marker-end="url(#arrow)"/><text x="388" y="91" font-size="12">delay + slip</text>
+      <rect x="418" y="91" width="120" height="50" rx="10" fill="#fff1ef" stroke="#a63d40"/><text x="478" y="112" font-size="14" font-weight="700">Filled result</text><text x="478" y="132" font-size="14">+5 bp</text>
+      <line x1="544" y1="116" x2="591" y2="116" stroke="#607066" stroke-width="3" marker-end="url(#arrow)"/><text x="568" y="91" font-size="12">selection</text>
+      <rect x="598" y="96" width="115" height="40" rx="10" fill="#18221d"/><text x="655" y="121" font-size="15" font-weight="700" fill="#f6f2e8">+2 bp net</text>
+    </g>
+  </svg>
+  <p><strong>Spread</strong> is the gap between the best displayed bid and ask. Crossing it for immediate execution creates a cost. A resting limit order may avoid crossing, but it introduces non-fill risk and adverse selection. A market order prioritises execution, not price; a limit order controls price, not certainty of execution. The <a href="https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work/types-orders">SEC’s order-type explainer</a> makes this trade-off explicit.</p>
+
+  <h2>13–17 · Worked arithmetic</h2>
+  <p>Suppose a paper setup has 20 outcomes: 12 wins and 8 losses. The hit rate is 60%. Average gross win is 14 bp; average gross loss is 9 bp.</p>
+  <div class="formula">Gross expectancy = (0.60 × 14) − (0.40 × 9)<br>= 8.4 − 3.6 = +4.8 bp per trade</div>
+  <p>Now estimate round-trip friction: 2 bp entry fee + 2 bp exit fee + 3 bp spread/slippage = 7 bp. Assume for this simple exercise that it applies equally to each completed trade.</p>
+  <div class="formula">Average net win = 14 − 7 = 7 bp<br>Average net loss = 9 + 7 = 16 bp<br>Net expectancy = (0.60 × 7) − (0.40 × 16)<br>= 4.2 − 6.4 = −2.2 bp per trade</div>
+  <p>The strategy wins more often than it loses and has positive gross expectancy, yet loses after costs. Its gross payoff ratio is 14 ÷ 9 = 1.56; its net payoff ratio collapses to 7 ÷ 16 = 0.44. At those net win/loss sizes, the break-even hit rate is 16 ÷ (7 + 16) ≈ 69.6%.</p>
+  <section class="exercise">
+    <p><strong>Check 1.</strong> A setup wins 70% of the time. Its average gross win is 8 bp, average gross loss is 12 bp, and round-trip friction averages 5 bp. What are gross and net expectancy?</p>
+    <button onclick="revealCheck(this,'Gross: (0.70 × 8) − (0.30 × 12) = +2.0 bp. Net win = 3 bp and net loss = 17 bp, so net: (0.70 × 3) − (0.30 × 17) = −3.0 bp. A 70% hit rate still loses.')">Reveal answer</button><div class="feedback"></div>
+  </section>
+
+  <h2>17–26 · Timed paper simulation</h2>
+  <p>Open a liquid crypto market in replay mode or hide the right side of a historical chart. Do not place a live order. Use one execution style for the whole drill, record every valid signal, and do not add leverage.</p>
+  <ol>
+    <li><strong>2 minutes—specify:</strong> market, timeframe, exact setup, trigger, stop/invalidation, target and maximum holding time.</li>
+    <li><strong>1 minute—cost model:</strong> copy the venue’s current published fee for your hypothetical order type; observe the spread; choose a conservative slippage allowance. Convert all to round-trip bp.</li>
+    <li><strong>5 minutes—simulate:</strong> advance one candle at a time. Record intended price, hypothetical fill, exit, gross bp, friction bp and net bp. Count a limit order only if price actually trades through it; mark uncertain queue fills as “not filled.”</li>
+    <li><strong>1 minute—stress:</strong> double the slippage component and recalculate. Do not rewrite the setup after seeing outcomes.</li>
+  </ol>
+  <p>Use this compact row for every attempt:</p>
+  <div class="formula">time | setup valid? | intended entry | assumed fill | exit | gross bp | fees | spread/slip | net bp | fill confidence | rule break?</div>
+  <div class="callout"><strong>Interpretation limit:</strong> this drill tests process and arithmetic, not profitability. Twenty trades are far too few to establish an edge; correlated market conditions make the effective evidence smaller still.</div>
+
+  <h2>26–30 · Retrieval and feedback</h2>
+  <section class="exercise"><p><strong>Check 2.</strong> Why can a passive limit order appear cheaper yet produce worse outcomes?</p><button onclick="revealCheck(this,'It may not fill when price moves favourably, while filling more often just before price moves against it. Lower explicit fees do not remove non-fill risk or adverse selection.')">Reveal answer</button><div class="feedback"></div></section>
+  <section class="exercise"><p><strong>Check 3.</strong> Convert 0.18% to basis points. Then calculate the gross £ result on £4,000 notional.</p><button onclick="revealCheck(this,'0.18% is 18 bp. £4,000 × 0.0018 = £7.20 gross. Costs must still be deducted; notional is not permission to use leverage.')">Reveal answer</button><div class="feedback"></div></section>
+  <section class="exercise"><p><strong>Check 4.</strong> Without looking back, name the six quantities needed to judge this chapter’s worked setup.</p><button onclick="revealCheck(this,'Hit rate, average gross win, average gross loss, fees, spread and slippage. Latency, non-fills and adverse selection should also be modelled when they materially affect execution.')">Reveal answer</button><div class="feedback"></div></section>
+
+  <h3>Send this feedback artefact to your LLM teacher</h3>
+  <p>Paste your trade rows and this prompt: “Audit my scalp simulation. Recalculate gross and net expectancy in bp; identify any optimistic fill, fee, spread or slippage assumption; separate measured facts from guesses; flag hindsight and rule changes; then ask me one retrieval question. Do not suggest leverage or a live trade.”</p>
+  <details><summary>Mastery test</summary><p>You are ready to move on when you can: define every bold term without looking; convert percent, bp and cash correctly; calculate gross and net expectancy; explain why hit rate alone is insufficient; and run the paper drill without changing rules after seeing the result.</p></details>
+
+  <h2>Primary reading</h2>
+  <ul>
+    <li><a href="https://www.investor.gov/additional-resources/spotlight/formerdirectorlorischock-directors-take/thinking-day-trading-know-risks">Investor.gov: Thinking of Day Trading? Know the Risks</a> — risk, cost and behavioural context.</li>
+    <li><a href="https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work/types-orders">Investor.gov: Types of Orders</a> — market versus limit-order execution trade-offs.</li>
+    <li><a href="https://www.fca.org.uk/investsmart/investing-crypto">UK FCA: Investing in crypto</a> — volatility, fees, platform risk and limited consumer protection.</li>
+    <li><a href="https://www.cftc.gov/LearnAndProtect/AdvisoriesAndArticles/CustomerAdvisory_CustomerAdvisory_Cryptocurrencies.htm">US CFTC: Risks of Virtual Currency Trading</a> — leverage, volatility, liquidity and platform risks.</li>
+  </ul>
+  <p class="meta">Next review: redo Check 1 tomorrow from memory, then rerun the same paper setup in a different market regime.</p>
+  <p>Questions are part of the lesson. Ask your LLM teacher to explain any term, audit your arithmetic, or challenge an execution assumption before moving on.</p>
+  <nav class="nav"><a href="0009-range-mean-reversion.html">← 0009</a><a href="0011-orders-and-adverse-selection.html">0011 →</a></nav>
+</main>
+</body>
+</html>

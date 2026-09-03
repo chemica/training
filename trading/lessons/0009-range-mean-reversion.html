@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>0009 — Range mean reversion</title><link rel="stylesheet" href="../assets/course.css"><script defer src="../assets/lesson.js"></script></head>
+<body><main>
+<p class="eyebrow">Lesson 0009 · 30 minutes · Playbook · Paper only</p>
+<h1>The middle pays no rent.</h1>
+<p class="lede">Today’s win: frame a range as a conditional auction, plan a boundary-to-interior rotation, and recognise when acceptance invalidates the fade.</p>
+<section class="callout"><p><strong>Training constraint:</strong> make every decision in replay or on paper. Crypto trades continuously, across fragmented venues, and can move sharply. This teaches observation and risk reasoning—not a promise of profit or a recommendation to trade.</p></section>
+
+<h2>0–4 · Retrieve first</h2>
+<section class="exercise"><p>Why does entering near the middle of a range usually weaken both invalidation clarity and reward-to-risk?</p><button type="button" onclick="revealCheck(this,'Near the midpoint, either boundary may come first. A structural stop is often distant while the first sensible target is nearby, and there is no boundary response to test the hypothesis.')">Compare your answer</button><div class="feedback" role="status"></div></section>
+
+<h2>4–10 · A precise vocabulary</h2>
+<p>A <strong>range</strong> is not any sideways patch. It is a working hypothesis: price has repeatedly travelled between two zones, and neither side has sustained control beyond them.</p>
+<section class="grid">
+<article class="card"><h3>Boundary</h3><p>A zone—not an exact pixel—where prior continuation attempts met opposition. Evidence matters most at the upper and lower boundaries.</p></article>
+<article class="card"><h3>Equilibrium / midpoint</h3><p>The 50% level between the chosen boundaries. It is a geometric reference, not proof of fair value or equal traded volume.</p></article>
+<article class="card"><h3>Rejection</h3><p>A failed attempt to remain beyond a boundary followed by an observable return inside. A wick is evidence; follow-through makes it stronger.</p></article>
+<article class="card"><h3>Rotation</h3><p>Directional travel from one area of the range toward another—edge to midpoint, or edge to edge. It is a path, not a guarantee.</p></article>
+<article class="card"><h3>Acceptance</h3><p>Sustained trade outside: closes and time beyond the boundary, retests that hold, or structure forming away from the old range.</p></article>
+<article class="card"><h3>Mean reversion</h3><p>The hypothesis that displacement from a reference tends to return toward it. Here the reference is the range interior; the regime must persist.</p></article>
+</section>
+
+<h2>10–14 · Read the auction</h2>
+<figure class="card">
+<svg viewBox="0 0 760 330" role="img" aria-labelledby="rt rd" style="display:block;width:100%;height:auto"><title id="rt">Range fade decision diagram</title><desc id="rd">Price travels from the lower boundary to the upper boundary. Rejection supports a rotation to the midpoint; acceptance above cancels the fade.</desc>
+<rect x="65" y="45" width="630" height="55" rx="8" fill="#f3dfc0" stroke="#ba7a16" stroke-width="2"/><rect x="65" y="230" width="630" height="55" rx="8" fill="#dcece3" stroke="#176b4d" stroke-width="2"/><line x1="65" y1="165" x2="695" y2="165" stroke="#607066" stroke-width="2" stroke-dasharray="8 8"/>
+<text x="80" y="78" font-family="system-ui" font-size="18">upper boundary zone</text><text x="80" y="158" font-family="system-ui" font-size="18">equilibrium / midpoint</text><text x="80" y="263" font-family="system-ui" font-size="18">lower boundary zone</text>
+<path d="M145 247 C215 205 240 95 325 76 C370 66 385 110 405 130 C430 151 475 158 520 165" fill="none" stroke="#176b4d" stroke-width="5"/><polygon points="520,165 501,154 503,176" fill="#176b4d"/>
+<path d="M325 76 C365 20 415 18 470 28" fill="none" stroke="#a63d40" stroke-width="4" stroke-dasharray="8 7"/><polygon points="470,28 451,18 454,39" fill="#a63d40"/>
+<text x="430" y="126" font-family="system-ui" font-size="16" fill="#176b4d">rejection → rotation hypothesis</text><text x="480" y="31" font-family="system-ui" font-size="16" fill="#a63d40">acceptance → no fade</text></svg>
+<figcaption><strong>The excursion is not the decision.</strong> Behaviour afterward distinguishes rejection from acceptance.</figcaption></figure>
+<p>Work large to small: decide whether the higher-timeframe market is balanced or trending; mark the range on the decision timeframe; use a lower timeframe only for the trigger. Do not let lower-timeframe noise invent the range.</p>
+
+<h2>14–19 · Boundary-fade playbook</h2>
+<ol>
+<li><strong>Context:</strong> require two meaningful responses from each zone and travel through the interior. Exclude obvious one-way expansion.</li>
+<li><strong>Location:</strong> wait at an edge. Passing through the midpoint is normal; initiating there rarely offers asymmetric location.</li>
+<li><strong>Trigger:</strong> require observable rejection—for example, excursion, close back inside, then failure to regain the excursion high.</li>
+<li><strong>Invalidation:</strong> define acceptance beforehand, such as two closes outside plus a retest that holds. Never widen it after entry.</li>
+<li><strong>Target:</strong> treat the midpoint as the first decision point. Plan the far edge only if rotation remains clean.</li>
+<li><strong>Time stop:</strong> if price cannot leave the boundary within a set number of bars, the expected rotation is absent.</li>
+</ol>
+<div class="formula">net paper expectancy = (win rate × average win) − (loss rate × average loss) − friction</div>
+<p>Friction includes spread, fees, and slippage. Record outcomes in <em>R</em>, where 1R is the planned loss from entry to invalidation. Reject setups where plausible round-trip friction consumes too much of the target.</p>
+
+<h2>19–22 · Worked paper example</h2>
+<p>Hypothetical BTC range: £49,200–£50,000; midpoint £49,600. Price prints £50,080, closes back at £49,940, then fails to exceed £50,020.</p>
+<section class="grid">
+<article class="card"><h3>Plan</h3><p>Paper entry £49,920; structural stop £50,100; first target £49,600. Risk is £180/BTC and gross reward £320/BTC: 1.78R before friction.</p></article>
+<article class="card"><h3>Size</h3><p>With a hypothetical £10 risk budget: £10 ÷ £180 = 0.0556 BTC. Size follows invalidation distance; the stop is not moved to manufacture size.</p></article>
+<article class="card"><h3>Fork</h3><p>£49,600 completes the first rotation. Two closes above £50,000 and a held retest indicate acceptance: cancel or exit by the prewritten rule.</p></article>
+</section>
+<p>One attractive example proves nothing. A distribution of paper outcomes, including costs and missed fills, is needed to estimate whether the playbook has any edge.</p>
+
+<h2>22–25 · Failure modes</h2>
+<ul class="checklist">
+<li><strong>Fading pressure:</strong> repeated shallow pullbacks into one edge may signal expansion, not resilience.</li>
+<li><strong>Redrawing afterward:</strong> moving a boundary so every overshoot becomes “rejection” destroys falsifiability.</li>
+<li><strong>Averaging into acceptance:</strong> adding because price is “more stretched” increases exposure as the regime may be changing.</li>
+<li><strong>Automatic far-edge target:</strong> the midpoint or internal structure may halt the rotation.</li>
+<li><strong>Ignoring conditions:</strong> news, liquidations, outages, thin books, and fragmented pricing can abruptly end balance.</li>
+</ul>
+
+<h2>25–28 · Timed replay</h2>
+<p>Use a liquid crypto pair in historical replay, paper-only, and one venue for candles and friction estimates.</p>
+<ol><li><strong>2 min:</strong> find a completed period with two responses at each boundary; hide later bars.</li><li><strong>2 min:</strong> record zones, midpoint, width, and why this is a range rather than a trend pause.</li><li><strong>3 min:</strong> at the next edge test, write trigger, entry, acceptance-based invalidation, first target, time stop, and friction.</li><li><strong>3 min:</strong> reveal bars singly. Label each <em>rejection</em>, <em>acceptance</em>, or <em>undecided</em>; record maximum favourable/adverse excursion in R.</li></ol>
+<section class="exercise"><p><strong>LLM feedback artefact:</strong> send the hidden-outcome screenshot and plan. Ask: “Was the range prospective? Is rejection observable? Would invalidation detect acceptance? Are costs and time represented? Which rule permits hindsight?”</p></section>
+
+<h2>28–30 · Retrieval test</h2>
+<section class="exercise"><p><strong>1.</strong> Price wicks above the upper edge and closes barely inside. What is established?</p><button type="button" onclick="revealCheck(this,'Only preliminary rejection evidence. One wick does not prove rotation; observe whether price builds back inside or holds outside on later tests.')">Reveal answer</button><div class="feedback" role="status"></div></section>
+<section class="exercise"><p><strong>2.</strong> Why is the midpoint a decision point, not a guaranteed target?</p><button type="button" onclick="revealCheck(this,'It is a geometric reference where rotation may stall or continue. Internal structure can interrupt price before arrival or carry it onward; the line has no causal power.')">Reveal answer</button><div class="feedback" role="status"></div></section>
+<section class="exercise"><p><strong>3.</strong> Two closes occur above the range and a pullback holds above the old edge. Which hypothesis gains support?</p><button type="button" onclick="revealCheck(this,'Acceptance. The range-fade thesis is invalid; do not reinterpret expansion as a cheaper short.')">Reveal answer</button><div class="feedback" role="status"></div></section>
+<details><summary>Self-check rubric</summary><p>You are ready to practise when you can define the range before the test, distinguish rejection from acceptance observably, calculate gross R and friction, and cancel a fade without arguing with expansion. Otherwise repeat one replay—not a live trade.</p></details>
+
+<h2>Primary sources</h2>
+<ul><li>CME Group, <a href="https://www.cmegroup.com/education/courses/technical-analysis/support-and-resistance.html">Support and Resistance</a> — zones, tests, breaks, and possible role reversal; tendencies, not guarantees.</li><li>CFTC, <a href="https://www.cftc.gov/LearnAndProtect/AdvisoriesAndArticles/CustomerAdvisory_CustomerAdvisory_Cryptocurrencies.htm">Customer Advisory: Virtual Currency Trading</a> — volatility, leverage, venue, manipulation, and cyber risks.</li><li>U.S. SEC, <a href="https://www.sec.gov/investor/pubs/ordertypes.htm">Trading Basics</a> — order types and why execution price is not assured.</li></ul>
+<nav class="nav"><a href="0008-breakouts-and-failures.html">← 0008</a><a href="0010-scalping-economics.html">0010 →</a></nav>
+<footer>Educational material only. Replay and paper calculations do not reproduce live execution or establish an edge. Ask your LLM teacher about any unclear term, rule, or replay result.</footer>
+</main></body></html>

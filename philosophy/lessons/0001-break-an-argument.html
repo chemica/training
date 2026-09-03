@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Lesson 1 — Break an Argument</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script defer src="../assets/quiz.js"></script>
+</head>
+<body><main>
+  <p class="eyebrow">Lesson 1 · Argument analysis · 10–15 minutes</p>
+  <h1>Break an argument without breaking the conversation</h1>
+  <p class="lede">Learn to turn ordinary speech into a clear map of reasons. It is the first move in honest disagreement—and a practical defence against believing whatever feels good.</p>
+  <div class="card"><strong>Your win for today</strong><p>By the end, you will be able to identify a conclusion, extract its premises, and supply a hidden premise without putting words into someone’s mouth.</p></div>
+
+  <h2>1. Find the job each claim is doing</h2>
+  <p>In philosophy, an <strong>argument</strong> is not a quarrel. It is a set of claims in which some—the <strong>premises</strong>—are offered as reasons for another—the <strong>conclusion</strong>. A passage can contain disagreement, explanation, rhetoric, or description without containing an argument at all. What makes it an argument is this support relationship. This functional account follows the <a href="https://iep.utm.edu/argument/">Internet Encyclopedia of Philosophy’s overview of arguments</a>.</p>
+  <blockquote>We should delay the release. The authentication tests are still failing.</blockquote>
+  <p>The order can mislead you. The conclusion appears first, and the reason follows:</p>
+  <div class="card argument"><span class="tag">P1</span><span>The authentication tests are still failing.</span><span class="tag">C</span><span>We should delay the release.</span></div>
+  <p>Words such as <em>because</em>, <em>since</em>, and <em>given that</em> often introduce premises. Words such as <em>therefore</em>, <em>so</em>, and <em>thus</em> often introduce conclusions. Treat these as clues, not syntax rules. Ask the deeper question. <em>What is the speaker trying to get me to accept, and what reasons are offered for it?</em></p>
+  <p class="takeaway">A premise and a conclusion are roles, not kinds of sentence. The same claim can be a conclusion in one argument and a premise in another.</p>
+
+  <section class="exercise" aria-labelledby="q1"><h2 id="q1">Retrieval check 1</h2><p>Do not look back. Which question best locates the conclusion?</p>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="That may locate emphasis, but rhetoric and argumentative function can differ.">Which claim sounds strongest?</button>
+    <button class="choice" data-answer="correct" data-correct-feedback="Exactly. The conclusion is the claim the reasons are intended to support.">Which claim gets support?</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="Sentence order is unreliable. Conclusions often appear before their premises.">Which claim comes last?</button>
+    <p class="feedback" role="status" aria-live="polite"></p></section>
+
+  <h2>2. Convert prose into a map</h2>
+  <p>Reconstruction strips away verbal noise while preserving the reasoning. Put each distinct claim on its own numbered line. Remove repetition and scene-setting. Replace pronouns only when necessary. End with one principal conclusion.</p>
+  <blockquote>Surely we should not believe a claim just because it comforts us. Comfort is no guide here. After all, false beliefs can be comforting too.</blockquote>
+  <p>A first pass gives us:</p>
+  <div class="card argument"><span class="tag">P1</span><span>False beliefs can be comforting.</span><span class="tag">C</span><span>We should not believe a claim merely because it comforts us.</span></div>
+  <p>This is already useful. The repeated phrase “comfort is no guide” adds emphasis but no separate reason. “Surely” signals confidence, not evidence. Reconstruction lets us see the inferential skeleton without confusing volume for support.</p>
+
+  <h2>3. Expose the hidden bridge</h2>
+  <p>Ordinary arguments are often <strong>enthymemes</strong>. One or more claims are left unstated because the speaker assumes the audience can supply them. Here, the stated premise does not yet connect explicitly to the practical conclusion. We need a bridge:</p>
+  <div class="card argument"><span class="tag">P1</span><span>False beliefs can be comforting.</span><span class="tag">HP</span><span>If a feature is shared by false and true beliefs, that feature alone is not a reliable basis for belief.</span><span class="tag">C</span><span>We should not believe a claim merely because it comforts us.</span></div>
+  <p>The <strong>hidden premise</strong> makes the intended route visible. It is not automatically true just because the argument needs it. Indeed, exposing it tells us exactly where productive disagreement may lie.</p>
+  <p>A good reconstruction balances two duties:</p>
+  <ol><li><strong>Fidelity.</strong> It must remain recognisably the speaker’s argument, supported by the words and context.</li><li><strong>Charity.</strong> Where more than one reading fits, prefer a coherent, plausible version over an obviously foolish one.</li></ol>
+  <p>Charity is not repair without permission. If your hidden premise introduces a new doctrine the speaker might reject, mark it as a question: “Does your reasoning assume that…?” The <a href="https://iep.utm.edu/argument/">IEP discussion of argument reconstruction</a> stresses that missing material must be supplied carefully and in context.</p>
+
+  <section class="exercise" aria-labelledby="q2"><h2 id="q2">Retrieval check 2</h2><p>Someone says, “Mira promised to help, so she ought to help.” Which hidden premise is most charitable?</p>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="Too broad. Some promises may be coerced, impossible, or overridden by grave duties.">Every promise must bind</button>
+    <button class="choice" data-answer="correct" data-correct-feedback="Good. This supplies the bridge while leaving sensible exceptions open for discussion.">Valid promises normally bind</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="That repeats the conclusion rather than connecting the stated premise to it.">Mira ought to help</button>
+    <p class="feedback" role="status" aria-live="polite"></p></section>
+
+  <h2>4. Only then begin evaluation</h2>
+  <p>Once the map is explicit, inspect two different things. First, the <strong>connection</strong>. Do the premises genuinely support the conclusion? Second, the <strong>inputs</strong>. Are the premises true or well justified?</p>
+  <p>For a deductive argument, the connection is <strong>valid</strong> when there is no possible case in which all the premises are true and the conclusion false. A valid argument with true premises is <strong>sound</strong>. These definitions are developed formally in <a href="https://forallx.openlogicproject.org/html/">Richard Zach and Aaron Thomas-Bolduc’s <em>forall x: Calgary</em></a>.</p>
+  <div class="card argument"><span class="tag">P1</span><span>If the server is unreachable, the health check fails.</span><span class="tag">P2</span><span>The health check fails.</span><span class="tag">C</span><span>The server is unreachable.</span></div>
+  <p>The conclusion might be true, but the reasoning does not guarantee it. The server could be reachable while the health-check code itself is broken. That possible case is a <strong>counterexample</strong> to validity. The bug becomes obvious once the argument is mapped. In later lessons we will distinguish deductive guarantee from probabilistic support and formalise patterns like this one.</p>
+  <p class="takeaway">Do not ask “Do I agree?” first. Ask “What is the argument?” Then test its connection and its premises separately.</p>
+
+  <h2>5. The four-pass reconstruction loop</h2>
+  <div class="card"><ol><li><strong>Locate.</strong> What claim is the speaker trying to establish?</li><li><strong>List.</strong> What distinct reasons are actually stated?</li><li><strong>Link.</strong> What hidden premise would connect those reasons to that conclusion?</li><li><strong>Check.</strong> Is your version both faithful and charitable?</li></ol></div>
+  <p>Use this loop in moral disputes, political claims, code reviews, and arguments about God. It slows the reflex to attack. Often you will discover that two people accept the same evidence but rely on different hidden bridges—or use the same words for different conclusions.</p>
+
+  <section class="exercise" aria-labelledby="practice"><h2 id="practice">Final dialogue exercise</h2><p>Reconstruct this without searching:</p>
+    <blockquote>A loving God would not remain hidden from sincere seekers. Yet some sincere seekers fail to believe that God exists. That is a serious reason to doubt that a loving God exists.</blockquote>
+    <ol><li>Write the main conclusion as <strong>C</strong>.</li><li>Write each stated premise as <strong>P1</strong>, <strong>P2</strong>, and so on.</li><li>Add one plausible hidden premise as <strong>HP</strong>.</li><li>Name one phrase whose meaning needs clarification.</li><li>Give the strongest objection to a premise or to the connection.</li></ol>
+    <p>Then send me your reconstruction. I’ll first assess its fidelity and structure. After that, I’ll take the strongest opposing side and run a short mock debate with you. Ask me any follow-up question if a distinction remains unclear.</p></section>
+
+  <h2>Primary reading</h2>
+  <p>Read the sections “The Nature of Arguments” and “Identifying Arguments” in the <a href="https://iep.utm.edu/argument/">Internet Encyclopedia of Philosophy’s “Argument”</a>. Keep the <a href="../reference/0001-core-argument-glossary.html">core argument glossary</a> beside you. For the formal logic ahead, bookmark <a href="https://forallx.openlogicproject.org/html/"><em>forall x: Calgary</em></a>.</p>
+  <footer>Mission link. This skill supports clear worldview formation, fair debate, and deliberate moral judgment. Next lesson. Deductive validity and counterexamples.</footer>
+</main></body>
+</html>

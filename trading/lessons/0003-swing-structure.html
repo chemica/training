@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>0003 — Swing structure</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script defer src="../assets/lesson.js"></script>
+  <style>
+    .chapter-map { border:1px solid var(--line); border-radius:10px; background:var(--card); padding:1rem; overflow:hidden; }
+    .chapter-map svg { width:100%; height:auto; display:block; }
+    .chapter-map .leg { fill:none; stroke:var(--ink); stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
+    .chapter-map .guide { stroke:#aaa18d; stroke-width:1.5; stroke-dasharray:6 5; }
+    .chapter-map .pivot { fill:var(--paper); stroke:var(--green); stroke-width:3; }
+    .chapter-map text { font:700 14px ui-sans-serif,system-ui,sans-serif; fill:var(--ink); }
+    .chapter-map .muted { fill:var(--muted); font-weight:500; }
+    .chapter-map .future { opacity:.08; transition:opacity .25s ease; }
+    .chapter-map.show-future .future { opacity:1; }
+    .diagram-controls { display:flex; flex-wrap:wrap; align-items:center; gap:.75rem; margin-top:.5rem; }
+    .diagram-controls button { margin-top:0; }
+    .diagram-status { margin:0; color:var(--muted); font-size:.95rem; }
+    .term { border-bottom:1px dotted var(--green); }
+    table { width:100%; border-collapse:collapse; margin:1.25rem 0; font-size:.96rem; }
+    th,td { text-align:left; vertical-align:top; padding:.7rem .55rem; border-bottom:1px solid var(--line); }
+    th { font-family:ui-sans-serif,system-ui,sans-serif; font-size:.82rem; }
+    .answer-key li { margin-bottom:.8rem; }
+    @media(max-width:600px){
+      .chapter-map { margin-left:-.2rem; margin-right:-.2rem; padding:.5rem; }
+      table { display:block; overflow-x:auto; white-space:nowrap; }
+      th,td { min-width:8.5rem; white-space:normal; }
+    }
+  </style>
+</head>
+<body><main>
+  <p class="eyebrow">Lesson 0003 · 30 minutes · Paper trading only</p>
+  <h1>Describe structure without predicting it.</h1>
+  <p class="lede">Today’s win: turn a noisy BTC chart into a defensible sequence of swings, then distinguish trend, range, and transition without reacting to every candle.</p>
+
+  <section class="callout" aria-label="Scope and safety">
+    <p><strong>This chapter trains observation, not forecasting.</strong> Use chart replay or paper trading. Crypto markets are volatile, and leverage can amplify losses; the CFTC warns that speculation in virtual-currency futures and options is high risk. <a href="https://www.cftc.gov/LearnAndProtect/AdvisoriesAndArticles/customer-advisory-understand-risks-virtual-currency-trading">CFTC customer advisory</a>.</p>
+  </section>
+
+  <h2>0–4 · Retrieve before reading</h2>
+  <div class="exercise">
+    <p>Without looking below, write one sentence for each prompt.</p>
+    <ol>
+      <li>What makes a high or low structurally meaningful?</li>
+      <li>Define an uptrend without saying “bullish,” “momentum,” or “moving average.”</li>
+      <li>What is the difference between a range and a transition?</li>
+    </ol>
+    <button type="button" onclick="revealCheck(this,'Keep your answers. At the end, score them against the operational definitions—not against whether your market prediction was right.')">Reveal scoring rule</button>
+    <div class="feedback" role="status"></div>
+  </div>
+
+  <h2>4–10 · A precise vocabulary</h2>
+  <p>Structure is a <em>compressed description</em> of where price repeatedly changed direction. These are operational definitions for consistent annotation; traders may use different algorithms, so record yours before comparing charts.</p>
+
+  <section class="grid">
+    <article class="card"><h3><span class="term">Pivot high</span></h3><p>A bar or small cluster whose high is exceeded by neither a chosen number of bars immediately before nor immediately after it. A pivot low reverses the comparison. It is local and only confirms after the right-hand bars exist.</p></article>
+    <article class="card"><h3><span class="term">Swing</span></h3><p>A selected pivot that anchors a visible directional leg. Every swing contains a pivot, but not every tiny pivot deserves swing status. Selection must use one consistent sensitivity.</p></article>
+    <article class="card"><h3><span class="term">Leg</span></h3><p>The movement from one selected swing to the next. An impulse leg travels with the current directional sequence; a pullback leg travels against it.</p></article>
+  </section>
+
+  <table aria-label="Operational market-state definitions">
+    <thead><tr><th>State</th><th>Operational definition</th><th>What would challenge it?</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Uptrend</strong></td><td>At least two selected swing highs and two selected swing lows advance: HH and HL sequences.</td><td>A break below the last protected swing low damages it; follow-through is still required for a downtrend.</td></tr>
+      <tr><td><strong>Downtrend</strong></td><td>At least two selected swing highs and two selected swing lows decline: LH and LL sequences.</td><td>A break above the last protected swing high damages it; one break alone does not prove reversal.</td></tr>
+      <tr><td><strong>Range</strong></td><td>Repeated rotations overlap between an upper and lower <em>zone</em>, without sustained closes and follow-through outside.</td><td>Acceptance beyond a boundary, followed by a pullback that holds outside it.</td></tr>
+      <tr><td><strong>Transition</strong></td><td>The previous sequence has been invalidated or weakened, but a new trend or stable range is not yet confirmed.</td><td>Formation of a fresh ordered sequence or repeated range rotations.</td></tr>
+    </tbody>
+  </table>
+  <p>The <strong>protected low</strong> in an uptrend is the swing low whose subsequent advance produced a new swing high; reverse the idea for a protected high in a downtrend. It is a useful reference, not a guaranteed stop level. CME’s education material likewise presents prior highs/lows as support and resistance and stresses that these are usually zones rather than exact prices. <a href="https://www.cmegroup.com/education/courses/technical-analysis/support-and-resistance.html">CME: Support and Resistance</a>.</p>
+
+  <h2>10–15 · Read the sequence, one leg at a time</h2>
+  <figure class="chapter-map" id="structureDiagram">
+    <svg viewBox="0 0 760 330" role="img" aria-labelledby="diagramTitle diagramDesc">
+      <title id="diagramTitle">Interactive swing sequence from uptrend into transition</title>
+      <desc id="diagramDesc">A stylised price path first shows higher highs and higher lows. The final hidden leg breaks the protected low, creating transition rather than immediately proving a downtrend.</desc>
+      <line class="guide" x1="32" y1="254" x2="730" y2="254"></line>
+      <line class="guide" x1="32" y1="136" x2="730" y2="136"></line>
+      <text class="muted" x="34" y="272">time →</text>
+      <polyline class="leg" points="45,250 150,155 238,205 350,90 445,160 545,55"></polyline>
+      <g>
+        <circle class="pivot" cx="150" cy="155" r="7"></circle><text x="126" y="137">H₁</text>
+        <circle class="pivot" cx="238" cy="205" r="7"></circle><text x="218" y="232">L₁</text>
+        <circle class="pivot" cx="350" cy="90" r="7"></circle><text x="329" y="72">HH</text>
+        <circle class="pivot" cx="445" cy="160" r="7"></circle><text x="423" y="187">HL</text>
+        <circle class="pivot" cx="545" cy="55" r="7"></circle><text x="524" y="38">HH</text>
+        <text class="muted" x="397" y="150">protected low</text>
+      </g>
+      <g class="future">
+        <polyline class="leg" style="stroke:var(--red)" points="545,55 620,174 700,244"></polyline>
+        <circle class="pivot" style="stroke:var(--red)" cx="700" cy="244" r="7"></circle>
+        <text x="666" y="231">lower low</text>
+        <text class="muted" x="570" y="300">old uptrend damaged → transition</text>
+      </g>
+    </svg>
+    <figcaption>
+      <p><strong>Pause before revealing:</strong> from H₁ → L₁ → HH → HL → HH, what is the state? Which point is protected?</p>
+      <div class="diagram-controls">
+        <button type="button" id="diagramToggle" aria-controls="structureDiagram" aria-expanded="false">Reveal next leg</button>
+        <p class="diagram-status" id="diagramStatus" role="status">Future price is hidden.</p>
+      </div>
+    </figcaption>
+  </figure>
+  <p><strong>Answer:</strong> the visible sequence is an uptrend; HL is the protected low because the advance from it produced the newest HH. The revealed lower low breaks that protection. Label the immediate state <em>transition</em>, not downtrend: no lower-high/lower-low sequence exists yet.</p>
+
+  <h2>15–19 · Worked example</h2>
+  <p>Suppose a 1-hour BTC chart yields selected swings at £48,000 low → £50,400 high → £49,100 low → £52,000 high → £50,600 low → £53,200 high.</p>
+  <ol>
+    <li><strong>Compare highs:</strong> £50,400 → £52,000 → £53,200. They advance.</li>
+    <li><strong>Compare lows:</strong> £48,000 → £49,100 → £50,600. They advance.</li>
+    <li><strong>Classify:</strong> uptrend. The £50,600 low is protected after price establishes £53,200 as a swing high.</li>
+    <li><strong>Update, do not predict:</strong> price then trades to £50,300. The old uptrend is damaged. Until a rebound forms a lower high and price subsequently makes a lower low—or a different stable pattern forms—the disciplined label is transition.</li>
+  </ol>
+  <div class="callout"><p><strong>Common error:</strong> re-labelling every shallow turn. Increase your swing threshold until the marks remain broadly useful after one small zoom change. “Maximum six visible swings” is a training constraint, not a universal market law.</p></div>
+
+  <h2>19–27 · Eight-minute replay drill</h2>
+  <p>Use a 1-hour BTC spot chart in replay mode. Hide at least 30 future bars. No orders, leverage, or real money.</p>
+  <ol class="checklist">
+    <li><strong>Minute 0–1:</strong> Write your selection rule—for example, “only turns followed by a move at least as large as the recent typical hourly range.” Avoid changing it mid-round.</li>
+    <li><strong>Minute 1–3:</strong> Mark no more than six confirmed swings. Label HH, HL, LH, or LL by comparison with the previous swing of the same type.</li>
+    <li><strong>Minute 3–4:</strong> State one classification: uptrend, downtrend, range, or transition. Quote the swing sequence as evidence.</li>
+    <li><strong>Minute 4–7:</strong> Reveal one bar at a time. Never move an old mark. Add a provisional mark only after price moves away; record each state change and the exact evidence.</li>
+    <li><strong>Minute 7–8:</strong> Score process, not P&amp;L: one point each for consistent threshold, ≤6 marks, evidence-based label, unchanged historical marks, and a correctly provisional newest pivot.</li>
+  </ol>
+  <div class="exercise">
+    <label for="replay-note">Paste-ready feedback artefact</label>
+    <textarea id="replay-note" rows="7" placeholder="Timeframe and hidden-bar date:\nSwing rule:\nSequence:\nInitial state + evidence:\nUpdates after each reveal:\nProcess score /5:\nUncertain point:"></textarea>
+    <button type="button" onclick="revealCheck(this,'Ask your LLM teacher: “Audit my labels using only information available at each step. Identify hindsight edits, inconsistent swing sensitivity, and the first bar where my state change became defensible.” Do not ask it to predict the next candle.')">Show feedback prompt</button>
+    <div class="feedback" role="status"></div>
+  </div>
+
+  <h2>27–30 · Test yourself</h2>
+  <ol>
+    <li>A three-bar pivot-high rule is used. Can the current bar be a <em>confirmed</em> pivot high? Why?</li>
+    <li>Highs are 100, 105, 109; lows are 94, 97, 101. Classify the sequence.</li>
+    <li>An uptrend’s protected low breaks. Must the chart now be a downtrend?</li>
+    <li>Price crosses a range high for one candle, then closes back inside. What evidence is missing before calling a breakout?</li>
+    <li>Your labels change whenever you zoom one step. What should you change first?</li>
+  </ol>
+  <details>
+    <summary>Answer key and feedback</summary>
+    <ol class="answer-key">
+      <li><strong>No.</strong> A pivot needing three bars on its right cannot confirm until those bars exist. Calling it confirmed uses future information.</li>
+      <li><strong>Uptrend.</strong> Both comparable highs and lows advance. State the sequence, rather than relying on the chart’s visual slope.</li>
+      <li><strong>No.</strong> The break invalidates or damages the prior uptrend; it creates transition first. A declining high-and-low sequence would support downtrend.</li>
+      <li><strong>Acceptance and follow-through.</strong> Look for sustained closes outside, or an outside retest that holds. A brief excursion may be rejection.</li>
+      <li><strong>Reduce sensitivity.</strong> Select fewer, larger pivots with one explicit threshold. Do not retroactively move earlier marks to improve the story.</li>
+    </ol>
+  </details>
+
+  <h2>Primary sources</h2>
+  <ul>
+    <li><a href="https://www.cmegroup.com/education/courses/technical-analysis/support-and-resistance.html">CME Group — Support and Resistance</a>: prior highs/lows, trend lines, and why levels are better treated as zones.</li>
+    <li><a href="https://www.cmegroup.com/education/courses/technical-analysis/chart-patterns-introduction.html">CME Group — Chart Patterns: Introduction</a>: interpreting price behaviour with support, resistance, and pattern context.</li>
+    <li><a href="https://www.cftc.gov/LearnAndProtect/AdvisoriesAndArticles/customer-advisory-understand-risks-virtual-currency-trading">CFTC — Understand the Risks of Virtual Currency Trading</a>: risk context for simulated crypto practice.</li>
+  </ul>
+  <p class="meta">Next review: repeat the test from memory in 48 hours, then rerun the drill on a 15-minute chart without changing the definitions.</p>
+
+  <nav class="nav"><a href="0002-candles-and-aggregation.html">← 0002</a><a href="0004-zones-and-evidence.html">0004 →</a></nav>
+
+  <script>
+    document.getElementById('diagramToggle').addEventListener('click', function () {
+      const figure = document.getElementById('structureDiagram');
+      const showing = figure.classList.toggle('show-future');
+      this.setAttribute('aria-expanded', String(showing));
+      this.textContent = showing ? 'Hide next leg' : 'Reveal next leg';
+      document.getElementById('diagramStatus').textContent = showing
+        ? 'The protected low breaks. The old uptrend is damaged; transition is the defensible label.'
+        : 'Future price is hidden.';
+    });
+  </script>
+</main></body></html>
