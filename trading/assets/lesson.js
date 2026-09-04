@@ -20,3 +20,11 @@ function revealCheck(button, answer) {
   output.style.display = 'block';
   output.textContent = answer;
 }
+
+function answerTest(button, correct, explanation) {
+  const box = button.closest('.exercise');
+  box.querySelectorAll('button').forEach(b => b.disabled = true);
+  const output = box.querySelector('.feedback');
+  output.style.display = 'block';
+  output.textContent = `${correct ? 'Correct.' : 'Not quite.'} ${explanation}`;
+}

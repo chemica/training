@@ -8,100 +8,92 @@
   <script defer src="../assets/quiz.js"></script>
 </head>
 <body><main>
-  <p class="eyebrow">Lesson 2 · Deductive logic · 10–15 minutes</p>
-  <h1>Truth here. Truth everywhere.</h1>
-  <p class="lede">A true conclusion can be reached badly. A valid argument can begin falsely. Today you will learn to keep those judgments separate—and break bad inferences with one decisive countermodel.</p>
+  <p class="eyebrow">Lesson 2 · Deductive logic · 15–20 minutes</p>
+  <h1>Truth is not validity</h1>
+  <p class="lede">By the end of this lesson, you will be able to judge claims and inferences separately, then expose an invalid deductive inference by constructing one case in which its premises are true and its conclusion is false.</p>
 
-  <p><a href="0001-break-an-argument.html">Lesson 1</a> gave you a two-pass debugger. First test the inference; then test the premises. Now we will make that first pass precise.</p>
+  <p><a href="0001-break-an-argument.html">Lesson 1</a> separated an argument into premises and a conclusion. That makes two different investigations possible. You can ask whether its claims are actually true, and you can ask whether its premises succeed in guaranteeing its conclusion. Everyday disagreement often blurs these questions. Someone rejects a false conclusion and assumes the reasoning must therefore be bad; someone else notices a neat piece of reasoning and assumes its premises deserve belief. Logic becomes more useful when you refuse both shortcuts.</p>
 
-  <h2>Three questions, not one</h2>
-  <p>Suppose somebody argues that Ada is in London because she is in England. You could ask three different questions.</p>
+  <h2>What follows from what?</h2>
+  <p>Consider the following argument. Its wording is reproduced unchanged from <a href="https://forallx.openlogicproject.org/bookml/Ch2.html#S1.I1"><em>forall x: Calgary</em>, §2.1</a>, a Creative Commons Attribution textbook.</p>
   <div class="card argument">
-    <span class="tag">TRUTH</span><span>Are the individual claims true in the actual world?</span>
-    <span class="tag">VALIDITY</span><span>Could the premises all be true while the conclusion is false?</span>
-    <span class="tag">SOUNDNESS</span><span>Is the inference valid <em>and</em> is every premise actually true?</span>
+    <span class="tag">P1</span><span>Either the butler or the gardener did it.</span>
+    <span class="tag">P2</span><span>The butler didn’t do it.</span>
+    <span class="tag">C</span><span>The gardener did it.</span>
   </div>
-  <p>A deductive argument is <strong>valid</strong> when there is no possible case in which all its premises are true and its conclusion is false. Validity therefore concerns a relationship, not the actual truth of any one sentence. A valid argument is <strong>sound</strong> when its premises are also actually true. These are the standard semantic definitions used in introductory formal logic. <a href="https://forallx.openlogicproject.org/html/">See <em>forall x: Calgary</em>, Part I</a>.</p>
-  <p class="takeaway">Actual truth belongs to claims. Validity belongs to inferences. Soundness combines them.</p>
+  <p>You do not need to know who actually committed the crime to assess the connection. Temporarily suppose both premises are true. The first leaves two candidates; the second eliminates the butler. Under those assumptions, denying the conclusion would leave nobody who could satisfy the first premise. The premises therefore guarantee the conclusion.</p>
+  <p>A deductive argument is <strong>valid</strong> when there is no case in which all its premises are true and its conclusion is false. Notice the conditional character of that definition. Validity does not say that the premises are true. It says what must be true <em>if</em> they are true together. Truth and falsity belong to individual claims; validity and invalidity belong to whole arguments.</p>
 
-  <h2>The four useful combinations</h2>
-  <div class="card">
-    <p><strong>Valid, true premises.</strong> The conclusion must be true. The argument is sound.</p>
-    <p><strong>Valid, at least one false premise.</strong> The conclusion may be true or false. The argument is unsound.</p>
-    <p><strong>Invalid, true premises.</strong> The conclusion may happen to be true, but the premises do not guarantee it.</p>
-    <p><strong>Invalid, at least one false premise.</strong> Again, the conclusion may be either true or false.</p>
+  <p>Now compare a second argument, also reproduced unchanged from <a href="https://forallx.openlogicproject.org/bookml/Ch2.html#S1.I2"><em>forall x: Calgary</em>, §2.1</a>.</p>
+  <div class="card argument">
+    <span class="tag">P1</span><span>If the driver did it, the maid didn’t do it.</span>
+    <span class="tag">P2</span><span>The maid didn’t do it.</span>
+    <span class="tag">C</span><span>The driver did it.</span>
   </div>
-  <p>Only one combination is impossible. A valid argument cannot have all true premises and a false conclusion. That impossible row is the whole definition of validity.</p>
+  <p>The maid’s innocence does not identify the driver. Perhaps neither of them did it; a third person did. In that case the first premise is true, the second premise is true, and the conclusion is false. That single case is a <strong>counterexample</strong>, often called a <strong>countermodel</strong> once “case” has been made formally precise. It proves that the argument is invalid.</p>
+  <p>This gives you a practical test. First, grant every premise for the sake of argument. Next, deny the conclusion. Finally, ask whether you can describe a coherent case in which those assignments hold together. If you can, stop: you have proved invalidity. If your proposed case makes even one premise false, it has not tested the inference. Failure to find a countermodel is not automatically a proof of validity; your search may simply have been unimaginative. Later lessons will give you exhaustive truth tables and formal proofs for cases where intuition is not enough.</p>
+  <p class="takeaway">To refute deductive validity, preserve every premise and falsify the conclusion.</p>
 
   <section class="exercise" aria-labelledby="q1">
-    <h2 id="q1">Retrieval check 1</h2>
-    <p>All mammals are warm-blooded. Whales are mammals. Therefore, whales are warm-blooded. What is established if both premises are actually true?</p>
-    <button class="choice" data-answer="wrong" data-incorrect-feedback="Validity alone is too weak. The prompt also grants true premises.">The inference is merely valid.</button>
-    <button class="choice" data-answer="correct" data-correct-feedback="Correct. Valid form plus actually true premises makes a sound argument.">The argument is fully sound.</button>
-    <button class="choice" data-answer="wrong" data-incorrect-feedback="Necessity of the conclusion itself does not follow. It is the conditional connection that is necessary.">The conclusion is logically necessary.</button>
+    <h2 id="q1">Find the genuine countermodel</h2>
+    <p>Which case proves the driver argument invalid?</p>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="This makes the second premise false. It also makes the conditional first premise false: the driver acted, but the maid did too. A countermodel must preserve every premise.">The maid and driver acted together.</button>
+    <button class="choice" data-answer="correct" data-correct-feedback="Correct. Both premises hold while the conclusion is false.">A third person acted entirely alone.</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="This makes the conclusion true, so it cannot be a countermodel.">The driver acted without the maid.</button>
     <p class="feedback" role="status" aria-live="polite"></p>
+    <p class="source-note"><strong>Provenance.</strong> Adapted from the argument and counterexample in <a href="https://forallx.openlogicproject.org/bookml/Ch2.html#S1.I2"><em>forall x: Calgary</em>, §2.1</a>. The source’s open explanation was converted into a three-choice retrieval check; the argument and intended counterexample are unchanged.</p>
   </section>
 
-  <h2>Actual does not mean necessary</h2>
-  <p>“London is the capital of the United Kingdom” is actually true. But logic does not make it true in every possible situation. Political history could have unfolded differently. By contrast, “Either London is the capital or London is not the capital” is true under every classical valuation of its component claim. It is a logical truth.</p>
-  <p>This distinction prevents a common confusion. A valid argument need not contain a conclusion that is true in every possible world. What must hold in every relevant case is the <em>conditional guarantee</em>. Whenever the premises are all true, the conclusion is true too.</p>
+  <h2>Validity can travel with falsehood</h2>
+  <p>Validity alone cannot establish a conclusion because a valid argument may begin with false premises. The textbook makes the point with this deliberately absurd argument, reproduced unchanged from <a href="https://forallx.openlogicproject.org/bookml/Ch2.html#S4.I1"><em>forall x: Calgary</em>, §2.4</a>.</p>
   <div class="card argument">
-    <span class="tag">P1</span><span>If the server is offline, the health check fails.</span>
-    <span class="tag">P2</span><span>The server is offline.</span>
-    <span class="tag">C</span><span>Therefore, the health check fails.</span>
+    <span class="tag">P1</span><span>Oranges are either fruit or musical instruments.</span>
+    <span class="tag">P2</span><span>Oranges are not fruit.</span>
+    <span class="tag">C</span><span>Oranges are musical instruments.</span>
   </div>
-  <p>The conclusion is contingent. The health check need not fail in every possible situation. Yet the inference is valid because there is no case satisfying both premises while falsifying the conclusion.</p>
+  <p>The second premise and conclusion are false, but the inference is valid. If both premises were true, the first would leave fruit and musical instrument as the alternatives, and the second would eliminate fruit. The silliness is doing useful work: it prevents factual plausibility from disguising the structure.</p>
 
-  <h2>Countermodels are failing test cases</h2>
-  <p>A <strong>countermodel</strong> is one possible interpretation under which every premise is true and the conclusion is false. Think of it as the smallest failing test for a claimed guarantee. One countermodel proves invalidity. A hundred cases in which premises and conclusion are all true do not prove validity, because the forbidden case may still be hiding.</p>
+  <p>The reverse mistake is equally tempting. True claims do not make an inference valid merely by appearing beside one another. This argument is reproduced unchanged from <a href="https://forallx.openlogicproject.org/bookml/Ch2.html#S4.I2"><em>forall x: Calgary</em>, §2.4</a>.</p>
   <div class="card argument">
-    <span class="tag">P1</span><span>If the database is down, login fails.</span>
-    <span class="tag">P2</span><span>Login fails.</span>
-    <span class="tag">C</span><span>Therefore, the database is down.</span>
+    <span class="tag">P1</span><span>London is in England.</span>
+    <span class="tag">P2</span><span>Beijing is in China.</span>
+    <span class="tag">C</span><span>Paris is in France.</span>
   </div>
-  <p>Construct the countermodel. The database is running, but the identity provider is down. Then P1 is true, because it correctly says what would happen if the database were down. P2 is true, because login does fail. The conclusion is false, because the database is not down. The argument is invalid. Its form is the familiar error of affirming the consequent.</p>
+  <p>All three claims are actually true, yet the premises do no work toward the conclusion. A case in which Paris is no longer in France could leave both premises untouched. The conclusion happens to be true; it does not follow from these premises. This is why collecting facts that agree with your preferred conclusion is not the same as arguing for it.</p>
+
+  <p>An argument is <strong>sound</strong> when it is valid and all its premises are actually true. Soundness is the combination needed for a deductive argument to establish its conclusion. This yields a disciplined order of work in debate. Test validity by granting the premises and looking for a countermodel; then, as a separate task, test each premise against evidence and objections. To rebut an argument, one successful route is enough: show that the inference is invalid or show that at least one premise is false. Do not claim to have done both when you have done only one.</p>
 
   <section class="exercise" aria-labelledby="q2">
-    <h2 id="q2">Retrieval check 2</h2>
-    <p>If moral facts exist, some moral judgments are correct. Some moral judgments are correct. Therefore, moral facts exist. Which response directly tests validity?</p>
-    <button class="choice" data-answer="correct" data-correct-feedback="Correct. That case grants both premises while denying the conclusion—the exact shape of a countermodel.">Correct judgments might arise without moral facts.</button>
-    <button class="choice" data-answer="wrong" data-incorrect-feedback="That challenges a premise. It may matter to soundness, but it does not directly test the inference.">No moral judgment is ever correct.</button>
-    <button class="choice" data-answer="wrong" data-incorrect-feedback="Agreement is evidence about belief, not a case with true premises and a false conclusion.">Most cultures share several moral judgments.</button>
+    <h2 id="q2">Keep the judgments separate</h2>
+    <p>How should the oranges argument be classified?</p>
+    <button class="choice" data-answer="correct" data-correct-feedback="Correct. Its premises guarantee its conclusion, but it contains a false premise.">Valid but not sound.</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="The false claims affect soundness, not the validity of the inference.">Invalid and not sound.</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="A sound argument must have true premises; this one does not.">Valid and fully sound.</button>
     <p class="feedback" role="status" aria-live="polite"></p>
+    <p class="source-note"><strong>Provenance.</strong> Adapted from the unchanged example and analysis in <a href="https://forallx.openlogicproject.org/bookml/Ch2.html#S4.I1"><em>forall x: Calgary</em>, §2.4</a>. The source example was converted into a three-choice classification check; no premise or conclusion was changed.</p>
   </section>
-
-  <h2>A mechanical test</h2>
-  <ol>
-    <li><strong>Freeze the wording.</strong> Identify the premises and conclusion charitably.</li>
-    <li><strong>Grant every premise.</strong> Do not argue with them yet.</li>
-    <li><strong>Deny the conclusion.</strong> Describe a coherent case where it is false.</li>
-    <li><strong>Check compatibility.</strong> Can all those assignments hold together?</li>
-  </ol>
-  <p>If yes, you have a countermodel and the inference is invalid. If no coherent countermodel exists, the argument may be valid—but confidence sometimes requires formalization or proof. Then return to pass two and investigate whether the premises are actually true.</p>
 
   <section class="exercise" aria-labelledby="q3">
-    <h2 id="q3">Interleaved challenge</h2>
-    <p>Which argument is valid but clearly unsound?</p>
-    <button class="choice" data-answer="wrong" data-incorrect-feedback="A silent alarm gives a countermodel. The premises could be true while the conclusion is false.">If fire, alarm. Alarm. Therefore fire.</button>
-    <button class="choice" data-answer="correct" data-correct-feedback="Correct. The form is valid, but its first premise is actually false.">All birds code. Ravens are birds. Therefore ravens code.</button>
-    <button class="choice" data-answer="wrong" data-incorrect-feedback="This is invalid, and its premises are not both clearly false. Rain could have another cause.">If clouds, rain. Rain. Therefore clouds.</button>
+    <h2 id="q3">A final test without plausible premises</h2>
+    <div class="card argument">
+      <span class="tag">P1</span><span>Socrates is a man.</span>
+      <span class="tag">P2</span><span>All men are carrots.</span>
+      <span class="tag">C</span><span>Socrates is a carrot.</span>
+    </div>
+    <p>Which assessment is correct?</p>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="Carrots being plants does not provide a case in which both premises are true and the conclusion false. The second premise is in fact false, but that affects soundness; validity asks what follows if both premises are granted.">Invalid because carrots are plants.</button>
+    <button class="choice" data-answer="correct" data-correct-feedback="Correct. The form is valid, but the second premise is false, so the argument is unsound.">Valid but not actually sound.</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="Soundness requires all premises to be actually true.">Valid and also fully sound.</button>
     <p class="feedback" role="status" aria-live="polite"></p>
+    <p class="source-note"><strong>Provenance.</strong> Adapted from <a href="https://forallx.openlogicproject.org/bookml/Ch2.html#Sx1.I2.i1"><em>forall x: Calgary</em>, Chapter 2 practice exercise A1</a>. The argument is reproduced unchanged. The source asks whether it is valid or invalid; this version adds soundness and converts the open response into three choices.</p>
   </section>
 
-  <h2>Your turn. A dialogue test</h2>
-  <p>Imagine I say this in a debate.</p>
-  <blockquote>“If God revealed a moral law, some moral duties would be objectively binding. Some moral duties are objectively binding. So God revealed a moral law.”</blockquote>
-  <p>Reply to me in four moves.</p>
-  <ol>
-    <li>Name the conclusion and say whether you are testing truth, validity, or soundness.</li>
-    <li>Grant both premises temporarily.</li>
-    <li>Offer the most philosophically serious countermodel you can.</li>
-    <li>Explain why your countermodel attacks the inference without yet proving atheism or disproving objective morality.</li>
-  </ol>
-  <p>Send me your answer. I will first mark the logical structure, then defend the argument as strongly as I can so you can practise the next round. Ask follow-up questions about anything unclear.</p>
+  <h2>Practise the two-pass discipline</h2>
+  <p>Return to a deductive argument you genuinely care about—or an argument whose speaker presents its conclusion as guaranteed—perhaps concerning morality, religion, politics, or a technical decision. Reconstruct it before judging it. On the first pass, grant every premise and attempt to make the conclusion false. Write down a concrete countermodel if you find one. On the second pass, set validity aside and ask what justifies each premise. This order matters: objecting to a premise does not expose an invalid inference, and exposing an invalid inference does not show that a premise is false. Neither kind of objection, by itself, shows that the conclusion is false; it shows that this argument has not established it.</p>
+  <p class="source-note"><strong>Provenance.</strong> Original supplementary course exercise; it applies the two-pass method developed from the sourced examples above to an argument selected by the learner.</p>
+  <p>Send me the argument, your proposed countermodel, and your premise assessment. I will check each judgment separately and try to improve the argument before criticising it. Ask follow-up questions about anything unclear.</p>
 
-  <h2>Primary reading</h2>
-  <p>Read <a href="https://forallx.openlogicproject.org/html/">Part I of <em>forall x: Calgary</em></a>, especially the sections on validity and soundness. For a prose treatment, compare the <a href="https://iep.utm.edu/deductive-inductive-arguments/">Internet Encyclopedia of Philosophy on deductive and inductive arguments</a>. Keep the <a href="../reference/0001-core-argument-glossary.html">core argument glossary</a> open while practising.</p>
-  <footer>Mission link. Separate truth from consequence so worldview debates and moral decisions turn on the real point of disagreement. Previous. <a href="0001-break-an-argument.html">Break an argument</a>.</footer>
+  <p><strong>Primary reading.</strong> Read <a href="https://forallx.openlogicproject.org/bookml/Ch2.html#S1">§2.1, “Consequence and validity”</a>, <a href="https://forallx.openlogicproject.org/bookml/Ch2.html#S2">§2.2, “Cases and types of validity”</a>, and <a href="https://forallx.openlogicproject.org/bookml/Ch2.html#S4">§2.4, “Sound arguments”</a> in <em>forall x: Calgary</em>. The book is <a href="https://collection.bccampus.ca/textbook/RkcWLQh3/">licensed CC BY 4.0</a>. Keep the <a href="../reference/0001-core-argument-glossary.html">core argument glossary</a> open while practising.</p>
+  <footer>Mission link. Separate truth from consequence so worldview debates and moral decisions turn on the real point of disagreement. Previous. <a href="0001-break-an-argument.html">Break an argument</a>. Next. <a href="0003-deduction-induction-abduction.html">Three kinds of inference</a>.</footer>
 </main></body>
 </html>

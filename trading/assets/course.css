@@ -29,6 +29,23 @@ button { margin-top:1rem; padding:.7rem 1rem; border:0; border-radius:6px; backg
 .nav { display:flex; justify-content:space-between; gap:1rem; margin-top:4rem; }
 details { margin:1rem 0; padding:1rem; background:var(--card); border:1px solid var(--line); border-radius:8px; }
 summary { cursor:pointer; font-weight:700; }
+.objective { font-size:1.1rem; padding:1rem 1.2rem; background:#e9f2ec; border-radius:8px; }
+.example-family { display:grid; gap:1rem; }
+.example { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:1rem; }
+.example header { display:flex; justify-content:space-between; gap:1rem; align-items:baseline; }
+.example .kind { font:700 .7rem ui-sans-serif,system-ui,sans-serif; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); }
+.example svg { width:100%; height:110px; background:#f3efe5; border-radius:6px; margin:.65rem 0; }
+.example polyline { fill:none; stroke:var(--green); stroke-width:4; stroke-linecap:round; stroke-linejoin:round; }
+.example.opposite polyline,.example.near-miss polyline { stroke:var(--red); }
+.decision { font-weight:700; color:var(--green); }
+.test-options { display:grid; gap:.6rem; margin-top:1rem; }
+.test-options button { margin:0; text-align:left; background:#fff; color:var(--ink); border:1px solid #aaa18d; }
+.test-options button:hover,.test-options button:focus { border-color:var(--green); }
+.terms { display:grid; grid-template-columns:repeat(2,1fr); gap:.75rem; }
+.terms div { background:var(--card); padding:.8rem; border-top:3px solid var(--green); }
+.terms dt { font-weight:700; }
+.terms dd { margin:.25rem 0 0; color:var(--muted); }
+@media(max-width:700px){.terms{grid-template-columns:1fr}.example header{display:block}}
 .strip { display:flex; gap:.4rem; align-items:end; height:150px; padding:1rem 0; border-bottom:1px solid var(--line); }
 .candle { width:22px; position:relative; background:var(--green); border-radius:2px; }
 .candle.down { background:var(--red); }

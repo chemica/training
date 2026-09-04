@@ -3,97 +3,96 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Lesson 3 — Three Ways Reasons Support Conclusions</title>
+  <title>Lesson 3 — Deduction, Induction, and Abduction</title>
   <link rel="stylesheet" href="../assets/course.css">
   <script defer src="../assets/quiz.js"></script>
 </head>
 <body><main>
-  <p class="eyebrow">Lesson 3 · Logic · About 12 minutes</p>
-  <h1>Three ways reasons can carry you</h1>
-  <p class="lede">Not every good argument is a proof. Learn to tell deduction, induction, and abduction apart—then judge each by the right standard.</p>
+  <p class="eyebrow">Lesson 3 · Logic · About 18 minutes</p>
+  <h1>What is this argument promising?</h1>
+  <p class="lede">A good argument need not prove its conclusion. Your task is to identify whether an argument promises necessity, probability, or explanatory superiority, and then demand the kind of support it actually owes you.</p>
 
-  <p>In <a href="0001-break-an-argument.html">Lesson 1</a>, you separated premises from conclusions and tested whether the conclusion could be false while the premises were true. Lesson 2 sharpened the distinction between the <em>shape</em> of an inference and the truth of its claims. Now we add a crucial question: <strong>what kind of support is the argument trying to provide?</strong></p>
+  <p>Lessons <a href="0001-break-an-argument.html">one</a> and <a href="0002-validity-soundness-countermodels.html">two</a> taught you to reconstruct an argument and to separate the truth of its premises from the validity of its inference. That test is indispensable when an argument is deductive. It becomes misleading, however, if it is used as the only test for every kind of reasoning. A weather forecast can be responsible without making rain logically inevitable; a diagnosis can be reasonable without ruling out every other disease. Calling either one “invalid” may be true in the technical deductive sense, yet miss the judgment that matters.</p>
+  <p class="source-note"><strong>Illustrations.</strong> The weather-forecast and diagnosis comparisons are original.</p>
 
-  <div class="card">
-    <p><strong>Deduction</strong> aims at necessity. If the premises are true, the conclusion cannot be false.</p>
-    <p><strong>Induction</strong> aims at probability. Observed cases make an unobserved case or generalisation more likely.</p>
-    <p><strong>Abduction</strong> aims at explanatory superiority. A hypothesis is supported because it explains the evidence better than its rivals.</p>
-  </div>
-  <p class="takeaway">First identify the intended destination: certainty, probability, or the best explanation.</p>
+  <p>The useful first question is therefore not simply, “Is it valid?” Ask, “What strength and kind of support is this argument trying to provide?” <strong>Deduction</strong> aims to make a false conclusion impossible if its premises are true. <strong>Induction</strong>, in the sense used in this lesson, projects from observed cases or frequencies to an unobserved case or a wider pattern. <strong>Abduction</strong> recommends a hypothesis because of its explanatory relation to the evidence. Induction and abduction are both <em>ampliative</em>: their conclusions go beyond what their premises logically guarantee. The distinction between them is their basis. Induction appeals to a pattern in observations; abduction appeals to explanation. This is a practical three-way map, not a claim that every philosopher draws the boundaries identically.</p>
 
-  <h2>Deduction preserves what the premises contain</h2>
-  <p>A deductive argument does not ask how likely its conclusion is. It asks whether the premises <em>guarantee</em> it. The standard is binary: valid or invalid. This is a relation between premises and conclusion, not a compliment paid to persuasive prose.</p>
+  <h2>See the different promises</h2>
+  <p>Begin with deduction. The following argument is used in <em>forall x: Calgary</em> to introduce conditional elimination, also called <em>modus ponens</em>.</p>
   <div class="card argument">
-    <span class="tag">P1</span><span>If objective moral duties exist, then at least some actions are wrong independently of anyone’s approval.</span>
-    <span class="tag">P2</span><span>Objective moral duties exist.</span>
-    <span class="tag">C</span><span>Therefore, at least some actions are wrong independently of anyone’s approval.</span>
+    <span class="tag">P1</span><span>If Jane is smart, then she is fast.</span>
+    <span class="tag">P2</span><span>Jane is smart.</span>
+    <span class="tag">C</span><span>Jane is fast.</span>
   </div>
-  <p>This is valid. It says nothing yet about whether objective duties exist. Deduction can transmit certainty from premises to conclusion, but it cannot manufacture certainty about its starting points.</p>
+  <p class="source-note"><strong>Provenance.</strong> Reproduced unchanged apart from punctuation from <a href="https://forallx.openlogicproject.org/html/Ch17.html#:~:text=If%20Jane%20is%20smart%20then%20she%20is%20fast.,Jane%20is%20fast."><em>forall x: Calgary</em>, §17.4, “Conditional”</a>, licensed CC BY 4.0.</p>
+  <p>The content tells us nothing about whether Jane really is smart or fast. The form nevertheless guarantees this: there is no possible assignment on which both premises are true and the conclusion false. That is the deductive promise. Judge the inference for <strong>validity</strong>; if it is valid, judge the premises for truth or acceptability. A valid argument with true premises earns the stronger verdict of soundness. Deduction is especially useful where you need to expose consequences already implicit in commitments: if someone grants both premises, denying the conclusion is no longer an available move.</p>
 
-  <h2>Induction extends a pattern</h2>
-  <p>Induction is <em>ampliative</em>. Its conclusion goes beyond what is already guaranteed by the premises. You have repeatedly found that careful source-checking reduces your false beliefs. You infer that it will probably help next time. Even with true premises, the conclusion could fail. That possibility does not make the inference bad.</p>
+  <p>Now compare an argument from the same open textbook.</p>
   <div class="card argument">
-    <span class="tag">P1</span><span>Across many cultures and eras, people have reported experiences they interpret as encounters with a transcendent reality.</span>
-    <span class="tag">C</span><span>Therefore, future societies will probably contain similar reports.</span>
+    <span class="tag">P1</span><span>Every winter so far, it has snowed in Calgary.</span>
+    <span class="tag">C</span><span>It will snow in Calgary this coming winter.</span>
   </div>
-  <p>Assess this by asking about sample size, representativeness, background knowledge, and possible defeaters. Calling it “invalid” misses the point. Induction never promised necessity. Philosophers disagree about how induction is justified; David Hume’s challenge is that past regularity cannot non-circularly prove that nature will remain regular. The <a href="https://plato.stanford.edu/entries/induction-problem/">Stanford Encyclopedia of Philosophy’s entry on the problem of induction</a> develops that problem.</p>
+  <p class="source-note"><strong>Provenance.</strong> Reproduced unchanged from <a href="https://forallx.openlogicproject.org/bookml/Ch2.html#:~:text=Every%20winter%20so%20far%2C%20it%20has%20snowed%20in%20Calgary.,It%20will%20snow%20in%20Calgary%20this%20coming%20winter."><em>forall x: Calgary</em>, §2.5, “Inductive arguments”</a>, licensed CC BY 4.0.</p>
+  <p>The premise may be true while the coming winter is the first snowless one. The argument is therefore deductively invalid, but it is plainly intended as an induction, not as a watertight proof. Its conclusion is a prediction based on an observed regularity. The relevant questions are graded rather than binary. How many winters were observed? Were the observations reliable? Has anything relevant changed? Does background knowledge about Calgary’s climate make continuation more likely? Evidence can make an induction stronger or weaker without ever turning it into a deduction.</p>
 
-  <h2>Abduction asks what would make sense of the evidence</h2>
-  <p>Abduction, or <em>inference to the best explanation</em>, begins with something to be explained and compares hypotheses. A detective, scientist, historian, theist, and atheist may all reason this way. The conclusion is not merely a forecast. It says which proposed explanation deserves preference.</p>
+  <p>That last point prevents a common failure. “The conclusion could still be false” is a decisive objection to deductive validity, but not to induction. Fallibility is part of the inductive promise. A useful criticism must instead show that the evidence raises the conclusion’s probability too little: perhaps the sample is tiny, selected badly, measured unreliably, or drawn from circumstances unlike the case being predicted. The philosophical <a href="https://plato.stanford.edu/entries/induction-problem/#HumeProbIndu">problem of induction</a> goes deeper and asks what ultimately justifies projecting observed regularities at all. You need not settle that problem to distinguish a careful projection from a reckless one.</p>
+
+  <p>Abduction begins somewhere else. It starts with evidence in need of explanation and asks which hypothesis would make the best sense of it. Stanford’s survey offers a case in which Tim and Harry had a serious quarrel that ended their friendship, but are later seen jogging together. Their having reconciled would explain the new observation, so reconciliation becomes a hypothesis worth taking seriously.</p>
   <div class="card argument">
-    <span class="tag">E</span><span>The universe appears governed by mathematically describable regularities and contains conscious agents capable of discovering them.</span>
-    <span class="tag">H1</span><span>A purposive intelligence explains this order.</span>
-    <span class="tag">H2</span><span>Impersonal laws, selection effects, or a deeper physical theory explain it.</span>
-    <span class="tag">C</span><span>One hypothesis is the best available explanation of the evidence.</span>
+    <span class="tag">E</span><span>Tim and Harry had a friendship-ending quarrel, but have now been seen jogging together.</span>
+    <span class="tag">H</span><span>The best explanation presently considered is that they have reconciled.</span>
+    <span class="tag">C</span><span>They have probably reconciled.</span>
   </div>
-  <p>Both theistic and naturalistic arguments often have this structure, even when presented as proofs. The real work lies in comparing rivals. Useful virtues include explanatory scope, explanatory power, fit with background knowledge, simplicity, and freedom from ad hoc repairs. These virtues can conflict, and they do not form an infallible scoring algorithm. See the <a href="https://plato.stanford.edu/entries/abduction/">Stanford Encyclopedia of Philosophy’s survey of abduction</a>.</p>
+  <p class="source-note"><strong>Provenance.</strong> Adapted from <a href="https://plato.stanford.edu/entries/abduction/#AbdGenIde:~:text=You%20happen%20to%20know%20that%20Tim%20and%20Harry,You%20conclude%20that%20they%20are%20friends%20again.">Igor Douven, “Abduction,” §1, Stanford Encyclopedia of Philosophy</a>. Changes: compressed the narrative into evidence–best-explanation–conclusion form, made the source’s claim that reconciliation is the best explanation explicit as a premise, added “presently considered” to mark the conclusion’s dependence on the available alternatives, and replaced “friends again” with “reconciled.”</p>
+  <p>This is not deduction. The evidence could be true while the conclusion is false. It is also not a simple frequency-based projection: no rate of post-quarrel reconciliation has been supplied. Its force comes from the comparative claim that reconciliation explains the observation better than the alternatives presently considered. Merely saying that reconciliation <em>would</em> explain the jogging would not be enough; many incompatible hypotheses can explain the same evidence. To assess the inference, ask whether reconciliation really explains the evidence, whether it fits what else is known, and whether a rival explains at least as well with fewer difficulties. “They remain estranged but have financial matters to discuss” might be such a rival. Stanford’s source adds that information to show how new evidence can remove the original hypothesis’s advantage. Abductive conclusions are therefore revisable: adding information cannot invalidate a genuine deductive consequence, but it can change which explanation is best.</p>
+
+  <p>Do not turn explanatory virtues into a mechanical points table. Simplicity, generality, and coherence with established theories can pull in different directions, and the virtues themselves remain philosophically disputed. Nor does “best of the explanations I considered” mean “probably true.” A poor shortlist can still have a winner. The disciplined abductive reasoner actively looks for serious rivals and asks what evidence would discriminate among them. This habit matters in worldview disputes. Theists and atheists may agree about an observation yet disagree over the candidate explanations, their background plausibility, or what counts as an explanatory cost. Stanford’s discussion presents both the <a href="https://plato.stanford.edu/entries/abduction/#ExpLov:~:text=the%20so%2Dcalled%20theoretical%20virtues,coherence%20with%20well%2Destablished%20theories">theoretical virtues</a> and the danger that the best candidate considered may merely be <a href="https://plato.stanford.edu/entries/abduction/#ExpLov:~:text=best%20of%20a%20bad%20lot">“the best of a bad lot”</a>.</p>
+
+  <h2>Choose the test the argument owes you</h2>
+  <p>The argument’s wording will sometimes announce its aim with “must,” “probably,” or “best explanation,” but ordinary speakers are rarely so tidy. Interpret the argument charitably: choose the strongest kind of support that both fits the reasoning actually offered and makes the argument reasonable. Do not “improve” a weak prediction into a deductive proof the speaker never claimed, and do not rescue a failed deduction by quietly lowering its conclusion to a probability. Complex arguments can also combine modes. A scientist may abductively propose a theory, deductively derive a prediction from it, and inductively treat repeated successful tests as confirmation.</p>
+  <p class="source-note"><strong>Illustration.</strong> The three-stage scientific sequence is original.</p>
 
   <section class="exercise" aria-labelledby="q1">
-    <h2 id="q1">Retrieval check one</h2>
-    <p>A new medication helped 78 percent of a large, representative trial group. Therefore, it will probably help the next relevant patient. What kind of support is intended?</p>
-    <button class="choice" data-answer="wrong" data-incorrect-feedback="Deduction would guarantee the outcome. A trial frequency does not do that.">Deductive support</button>
-    <button class="choice" data-answer="correct" data-correct-feedback="Correct. The observed frequency raises the probability of an unobserved case.">Inductive support</button>
-    <button class="choice" data-answer="wrong" data-incorrect-feedback="Not this time. No rival hypotheses are being compared for explanatory merit.">Abductive support</button>
+    <h2 id="q1">Retrieval practice</h2>
+    <p>“If Jane is smart, then she is fast. Jane is smart. Therefore, Jane is fast.” Which assessment does this argument primarily invite?</p>
+    <button class="choice" data-answer="correct" data-correct-feedback="Correct. Its premises are presented as guaranteeing its conclusion, so validity is the first test.">Test deductive validity</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="This argument does not project an observed pattern to an unobserved case.">Test inductive strength</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="This argument does not prefer a hypothesis because it explains some evidence.">Test explanatory merit</button>
     <p class="feedback" role="status" aria-live="polite"></p>
+    <p class="source-note"><strong>Test provenance.</strong> The argument is reproduced unchanged apart from punctuation from <a href="https://forallx.openlogicproject.org/html/Ch17.html#:~:text=If%20Jane%20is%20smart%20then%20she%20is%20fast.,Jane%20is%20fast."><em>forall x: Calgary</em>, §17.4</a>. The three-way classification question and feedback are original.</p>
   </section>
 
   <section class="exercise" aria-labelledby="q2">
-    <h2 id="q2">Retrieval check two</h2>
-    <p>Your keys are absent from their usual place. A damp coat lies by the door, and your partner has just returned home. “My partner moved the keys” fits these clues better than “the keys ceased to exist.” What kind of support is intended?</p>
-    <button class="choice" data-answer="wrong" data-incorrect-feedback="The clues do not logically entail who moved the keys.">Deductive support</button>
-    <button class="choice" data-answer="wrong" data-incorrect-feedback="A past frequency could contribute, but this inference primarily compares explanations of present clues.">Inductive support</button>
-    <button class="choice" data-answer="correct" data-correct-feedback="Correct. The claim is preferred as the best explanation among rivals.">Abductive support</button>
+    <h2 id="q2">Apply the right criticism</h2>
+    <p>Every winter so far, it has snowed in Calgary; therefore, it will snow there this coming winter. Which response most directly evaluates this argument on its own inductive terms?</p>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="That merely observes that the inference is not deductively valid, which the inductive argument never promised.">A snowless winter remains logically possible.</button>
+    <button class="choice" data-answer="correct" data-correct-feedback="Correct. That evidence both disrupts the projection from earlier winters and bears against snow in the coming one.">Reliable evidence shows that Calgary’s winters have warmed enough to make a snowless winter substantially more likely.</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="Past winters are evidence for a projection even though they do not guarantee its truth.">Past winters provide no relevant evidence.</button>
     <p class="feedback" role="status" aria-live="polite"></p>
+    <p class="source-note"><strong>Test provenance.</strong> The argument is adapted from <a href="https://forallx.openlogicproject.org/bookml/Ch2.html#:~:text=Every%20winter%20so%20far%2C%20it%20has%20snowed%20in%20Calgary.,It%20will%20snow%20in%20Calgary%20this%20coming%20winter."><em>forall x: Calgary</em>, §2.5</a>. Changes: joined the premise and conclusion into one sentence, replaced the second occurrence of “Calgary” with “there,” and added “therefore.” The evaluation question, answer choices, and evidence-of-climate-change defeater are original.</p>
   </section>
 
-  <h2>One claim can enter three different arguments</h2>
-  <p>“Moral realism is true” could be the conclusion of very different inferences.</p>
-  <div class="card">
-    <p><strong>Deductive.</strong> If some acts are wrong regardless of anyone’s attitudes, moral realism is true. Some acts are wrong regardless of anyone’s attitudes. Therefore, moral realism is true.</p>
-    <p><strong>Inductive.</strong> Many independently investigated cases of apparently objective moral reasons have survived criticism. So further cases will probably survive too.</p>
-    <p><strong>Abductive.</strong> Moral realism explains moral disagreement, reform, and the felt authority of moral reasons better than its rivals do. So moral realism is probably the best explanation.</p>
-  </div>
-  <p>The shared conclusion does not make these the same argument. Each can fail differently. Attack the deductive version with a countermodel or a false premise. Test the inductive version for a poor sample or unreliable projection. Challenge the abductive version with a better rival explanation or a dispute about explanatory virtues.</p>
-
-  <h2>The category is an interpretation, not a label in the sentence</h2>
-  <p>Words such as “necessarily” and “probably” offer clues, but speakers often leave their intended strength unstated. Apply the <strong>charity test</strong>. Which reconstruction makes the argument strongest while remaining faithful to what the person plausibly meant? A cosmological argument may contain deductive subarguments and an abductive overall case. An evolutionary explanation may combine statistical induction with explanatory comparison. Real reasoning is often a pipeline, not a single opcode.</p>
+  <section class="exercise" aria-labelledby="q3">
+    <h2 id="q3">Notice what new evidence does</h2>
+    <p>Tim and Harry had a friendship-ending quarrel and are later seen jogging together. You initially infer that they reconciled. Then you learn that they are former business partners with unresolved financial matters. What should happen?</p>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="The reconciliation hypothesis remains possible, but the new rival means it is no longer clearly best.">Keep the conclusion unchanged</button>
+    <button class="choice" data-answer="correct" data-correct-feedback="Correct. The added information supplies a serious rival explanation and weakens the original abduction.">Recompare the rival explanations</button>
+    <button class="choice" data-answer="wrong" data-incorrect-feedback="No frequency or sample is doing the inferential work in this case.">Calculate the observed frequency</button>
+    <p class="feedback" role="status" aria-live="polite"></p>
+    <p class="source-note"><strong>Test provenance.</strong> Adapted from <a href="https://plato.stanford.edu/entries/abduction/#AbdGenIde:~:text=For%20instance%2C%20adding%20the%20premise%20that%20Tim%20and%20Harry,financial%20matters%20to%20discuss.">Igor Douven, “Abduction,” §1.1, Stanford Encyclopedia of Philosophy</a>. Changes: combined the entry’s original case and added-information variation into a multiple-choice test; shortened “some financial matters to discuss” to “unresolved financial matters.”</p>
+  </section>
 
   <section class="exercise" aria-labelledby="dialogue">
     <h2 id="dialogue">Dialogue challenge</h2>
-    <blockquote>“Conscious experience is radically unlike anything described by physics. The best explanation is that consciousness is fundamental rather than produced by matter.”</blockquote>
-    <p>Without searching, send me a short reply containing four moves.</p>
-    <ol>
-      <li>Name the main mode of support and explain why.</li>
-      <li>State the argument’s evidence and conclusion separately.</li>
-      <li>Offer the strongest rival explanation you can.</li>
-      <li>Name one fact that would shift your comparison toward either side.</li>
-    </ol>
-    <p>I’ll answer first as your tutor, then as a defender of the position you judged weakest. Ask follow-up questions about anything unclear.</p>
+    <p>Return to the Calgary argument. Send me a short response that does four things: classify the intended support; explain why deductive invalidity does not by itself defeat it; name one fact that would strengthen it; and name one fact that would weaken it. I will challenge your classification or your choice of evidence, then help you revise the answer. Ask follow-up questions about anything unclear.</p>
+    <p class="source-note"><strong>Test provenance.</strong> The task refers to the Calgary argument reproduced earlier from <a href="https://forallx.openlogicproject.org/bookml/Ch2.html#:~:text=Every%20winter%20so%20far%2C%20it%20has%20snowed%20in%20Calgary.,It%20will%20snow%20in%20Calgary%20this%20coming%20winter."><em>forall x: Calgary</em>, §2.5</a>. The four-part evaluation task is original.</p>
   </section>
 
-  <h2>Primary reading</h2>
-  <p>Read the sections on deduction and induction in the <a href="https://iep.utm.edu/deductive-inductive-arguments/">Internet Encyclopedia of Philosophy’s “Deductive and Inductive Arguments”</a>. Then read sections 1 and 2 of the <a href="https://plato.stanford.edu/entries/abduction/">Stanford Encyclopedia of Philosophy’s “Abduction”</a>. Use the <a href="../reference/0001-core-argument-glossary.html">core argument glossary</a> while you work.</p>
+  <p class="takeaway">Match criticism to promise. Deduction owes you a guarantee that no counterexample is possible; induction owes you a responsible projection; abduction owes you a serious comparison of explanations.</p>
 
-  <footer>Mission link: identify what an argument genuinely promises before using it to shape your worldview, debate an opponent, or make a moral decision.</footer>
+  <h2>Read from the sources</h2>
+  <p>Read <a href="https://forallx.openlogicproject.org/bookml/Ch2.html#:~:text=2.5%20Inductive%20arguments">§2.5 of <em>forall x: Calgary</em></a> for the contrast between deductive validity and induction. Then read <a href="https://plato.stanford.edu/entries/abduction/#AbdGenIde">§1 of the Stanford Encyclopedia of Philosophy entry on abduction</a>, especially §1.1 on how induction and abduction differ. Keep the <a href="../reference/0001-core-argument-glossary.html">core argument glossary</a> open while practising.</p>
+
+  <footer>Mission link. Before accepting or attacking an argument in a worldview debate or moral decision, identify what it promises and hold it to the corresponding standard. Previous. <a href="0002-validity-soundness-countermodels.html">Validity, soundness, and countermodels</a>. Next. <a href="0004-propositional-logic.html">Propositional logic</a>.</footer>
 </main></body>
 </html>
